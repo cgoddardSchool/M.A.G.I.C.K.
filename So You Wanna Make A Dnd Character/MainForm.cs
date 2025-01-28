@@ -423,5 +423,9 @@ namespace M_A_G_I_C_K
 
         }
 
+        private void FirstNameTxt_TextChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine("First Name Added! Please submit to lock in the character/////...");
+        }
     }
 }
