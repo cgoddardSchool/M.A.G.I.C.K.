@@ -88,7 +88,7 @@
             "Wizard",
             "Rogue",
             "Bard"});
-            this.ClassDropBox.Location = new System.Drawing.Point(12, 167);
+            this.ClassDropBox.Location = new System.Drawing.Point(11, 134);
             this.ClassDropBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ClassDropBox.Name = "ClassDropBox";
             this.ClassDropBox.Size = new System.Drawing.Size(193, 24);
@@ -106,7 +106,7 @@
             "Dwarf",
             "Orc",
             "Dragonborn"});
-            this.RaceDropBox.Location = new System.Drawing.Point(12, 250);
+            this.RaceDropBox.Location = new System.Drawing.Point(11, 80);
             this.RaceDropBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RaceDropBox.Name = "RaceDropBox";
             this.RaceDropBox.Size = new System.Drawing.Size(193, 24);
@@ -116,7 +116,7 @@
             // RaceLabel
             // 
             this.RaceLabel.AutoSize = true;
-            this.RaceLabel.Location = new System.Drawing.Point(12, 231);
+            this.RaceLabel.Location = new System.Drawing.Point(11, 61);
             this.RaceLabel.Name = "RaceLabel";
             this.RaceLabel.Size = new System.Drawing.Size(40, 16);
             this.RaceLabel.TabIndex = 2;
@@ -125,7 +125,7 @@
             // ClassLabel
             // 
             this.ClassLabel.AutoSize = true;
-            this.ClassLabel.Location = new System.Drawing.Point(12, 149);
+            this.ClassLabel.Location = new System.Drawing.Point(11, 116);
             this.ClassLabel.Name = "ClassLabel";
             this.ClassLabel.Size = new System.Drawing.Size(41, 16);
             this.ClassLabel.TabIndex = 3;
@@ -177,7 +177,7 @@
             // 
             // runBtn
             // 
-            this.runBtn.Location = new System.Drawing.Point(728, 613);
+            this.runBtn.Location = new System.Drawing.Point(925, 613);
             this.runBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.runBtn.Name = "runBtn";
             this.runBtn.Size = new System.Drawing.Size(161, 23);
@@ -259,7 +259,7 @@
             // 
             // LevelPicker
             // 
-            this.LevelPicker.Location = new System.Drawing.Point(313, 62);
+            this.LevelPicker.Location = new System.Drawing.Point(277, 34);
             this.LevelPicker.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.LevelPicker.Maximum = new decimal(new int[] {
             3,
@@ -286,7 +286,7 @@
             // LevelLabel
             // 
             this.LevelLabel.AutoSize = true;
-            this.LevelLabel.Location = new System.Drawing.Point(313, 39);
+            this.LevelLabel.Location = new System.Drawing.Point(277, 11);
             this.LevelLabel.Name = "LevelLabel";
             this.LevelLabel.Size = new System.Drawing.Size(40, 16);
             this.LevelLabel.TabIndex = 25;
@@ -400,7 +400,7 @@
             0});
             this.STRstats.Name = "STRstats";
             this.STRstats.ReadOnly = true;
-            this.STRstats.Size = new System.Drawing.Size(62, 32);
+            this.STRstats.Size = new System.Drawing.Size(62, 33);
             this.STRstats.TabIndex = 35;
             this.STRstats.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.STRstats.Value = new decimal(new int[] {
@@ -426,7 +426,7 @@
             0});
             this.DEXStats.Name = "DEXStats";
             this.DEXStats.ReadOnly = true;
-            this.DEXStats.Size = new System.Drawing.Size(62, 32);
+            this.DEXStats.Size = new System.Drawing.Size(62, 33);
             this.DEXStats.TabIndex = 36;
             this.DEXStats.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.DEXStats.Value = new decimal(new int[] {
@@ -452,7 +452,7 @@
             0});
             this.CONStats.Name = "CONStats";
             this.CONStats.ReadOnly = true;
-            this.CONStats.Size = new System.Drawing.Size(62, 32);
+            this.CONStats.Size = new System.Drawing.Size(62, 33);
             this.CONStats.TabIndex = 37;
             this.CONStats.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.CONStats.Value = new decimal(new int[] {
@@ -478,7 +478,7 @@
             0});
             this.SMRTStats.Name = "SMRTStats";
             this.SMRTStats.ReadOnly = true;
-            this.SMRTStats.Size = new System.Drawing.Size(62, 32);
+            this.SMRTStats.Size = new System.Drawing.Size(62, 33);
             this.SMRTStats.TabIndex = 38;
             this.SMRTStats.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.SMRTStats.Value = new decimal(new int[] {
@@ -504,7 +504,7 @@
             0});
             this.WISstats.Name = "WISstats";
             this.WISstats.ReadOnly = true;
-            this.WISstats.Size = new System.Drawing.Size(62, 32);
+            this.WISstats.Size = new System.Drawing.Size(62, 33);
             this.WISstats.TabIndex = 39;
             this.WISstats.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.WISstats.Value = new decimal(new int[] {
@@ -530,7 +530,7 @@
             0});
             this.CHAStats.Name = "CHAStats";
             this.CHAStats.ReadOnly = true;
-            this.CHAStats.Size = new System.Drawing.Size(62, 32);
+            this.CHAStats.Size = new System.Drawing.Size(62, 33);
             this.CHAStats.TabIndex = 40;
             this.CHAStats.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.CHAStats.Value = new decimal(new int[] {
