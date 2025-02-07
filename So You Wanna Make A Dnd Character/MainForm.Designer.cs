@@ -55,7 +55,6 @@
             this.WISCheck = new System.Windows.Forms.CheckedListBox();
             this.CHACheck = new System.Windows.Forms.CheckedListBox();
             this.StatRoll = new System.Windows.Forms.Button();
-            this.InputStatBTN = new System.Windows.Forms.Button();
             this.STRstats = new System.Windows.Forms.NumericUpDown();
             this.DEXStats = new System.Windows.Forms.NumericUpDown();
             this.CONStats = new System.Windows.Forms.NumericUpDown();
@@ -295,10 +294,6 @@
             // STRCheck
             // 
             this.STRCheck.FormattingEnabled = true;
-            this.STRCheck.Items.AddRange(new object[] {
-            "This",
-            "Will ",
-            "Show adds that can be done"});
             this.STRCheck.Location = new System.Drawing.Point(858, 48);
             this.STRCheck.Name = "STRCheck";
             this.STRCheck.Size = new System.Drawing.Size(228, 55);
@@ -307,10 +302,6 @@
             // DEXCheck
             // 
             this.DEXCheck.FormattingEnabled = true;
-            this.DEXCheck.Items.AddRange(new object[] {
-            "This",
-            "Will ",
-            "Show adds that can be done"});
             this.DEXCheck.Location = new System.Drawing.Point(858, 134);
             this.DEXCheck.Name = "DEXCheck";
             this.DEXCheck.Size = new System.Drawing.Size(228, 55);
@@ -319,10 +310,6 @@
             // CONCheck
             // 
             this.CONCheck.FormattingEnabled = true;
-            this.CONCheck.Items.AddRange(new object[] {
-            "This",
-            "Will ",
-            "Show adds that can be done"});
             this.CONCheck.Location = new System.Drawing.Point(858, 216);
             this.CONCheck.Name = "CONCheck";
             this.CONCheck.Size = new System.Drawing.Size(228, 55);
@@ -331,10 +318,6 @@
             // SMRTCheck
             // 
             this.SMRTCheck.FormattingEnabled = true;
-            this.SMRTCheck.Items.AddRange(new object[] {
-            "This",
-            "Will ",
-            "Show adds that can be done"});
             this.SMRTCheck.Location = new System.Drawing.Point(858, 302);
             this.SMRTCheck.Name = "SMRTCheck";
             this.SMRTCheck.Size = new System.Drawing.Size(228, 55);
@@ -343,10 +326,6 @@
             // WISCheck
             // 
             this.WISCheck.FormattingEnabled = true;
-            this.WISCheck.Items.AddRange(new object[] {
-            "This",
-            "Will ",
-            "Show adds that can be done"});
             this.WISCheck.Location = new System.Drawing.Point(858, 392);
             this.WISCheck.Name = "WISCheck";
             this.WISCheck.Size = new System.Drawing.Size(228, 55);
@@ -355,10 +334,6 @@
             // CHACheck
             // 
             this.CHACheck.FormattingEnabled = true;
-            this.CHACheck.Items.AddRange(new object[] {
-            "This",
-            "Will ",
-            "Show adds that can be done"});
             this.CHACheck.Location = new System.Drawing.Point(858, 483);
             this.CHACheck.Name = "CHACheck";
             this.CHACheck.Size = new System.Drawing.Size(228, 55);
@@ -373,16 +348,6 @@
             this.StatRoll.Text = "Roll Stats";
             this.StatRoll.UseVisualStyleBackColor = true;
             this.StatRoll.Click += new System.EventHandler(this.StatRoll_Click);
-            // 
-            // InputStatBTN
-            // 
-            this.InputStatBTN.Location = new System.Drawing.Point(446, 115);
-            this.InputStatBTN.Name = "InputStatBTN";
-            this.InputStatBTN.Size = new System.Drawing.Size(100, 23);
-            this.InputStatBTN.TabIndex = 34;
-            this.InputStatBTN.Text = "Input Stats";
-            this.InputStatBTN.UseVisualStyleBackColor = true;
-            this.InputStatBTN.Click += new System.EventHandler(this.InputStatBTN_Click);
             // 
             // STRstats
             // 
@@ -598,7 +563,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1098, 647);
+            this.ClientSize = new System.Drawing.Size(1110, 669);
             this.Controls.Add(this.CHAbonusTxt);
             this.Controls.Add(this.WISbonusTxt);
             this.Controls.Add(this.SMRTbonusTxt);
@@ -611,7 +576,6 @@
             this.Controls.Add(this.CONStats);
             this.Controls.Add(this.DEXStats);
             this.Controls.Add(this.STRstats);
-            this.Controls.Add(this.InputStatBTN);
             this.Controls.Add(this.StatRoll);
             this.Controls.Add(this.CHACheck);
             this.Controls.Add(this.WISCheck);
@@ -684,7 +648,6 @@
         private System.Windows.Forms.CheckedListBox WISCheck;
         private System.Windows.Forms.CheckedListBox CHACheck;
         private System.Windows.Forms.Button StatRoll;
-        private System.Windows.Forms.Button InputStatBTN;
         private System.Windows.Forms.NumericUpDown STRstats;
         private System.Windows.Forms.NumericUpDown DEXStats;
         private System.Windows.Forms.NumericUpDown CONStats;

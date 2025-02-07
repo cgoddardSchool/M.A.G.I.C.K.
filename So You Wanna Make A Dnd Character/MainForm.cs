@@ -42,6 +42,12 @@ namespace M_A_G_I_C_K
                 Orc
                 DragonBorn
             */
+            STRCheck.Items.Clear();
+            DEXCheck.Items.Clear();
+            SMRTCheck.Items.Clear();
+            CHACheck.Items.Clear();
+            CONCheck.Items.Clear();
+            WISCheck.Items.Clear();
 
 
             switch (RaceDropBox.SelectedIndex)
@@ -62,7 +68,7 @@ namespace M_A_G_I_C_K
 
                 case 4:
                     //orc
-
+                    STRCheck.Items.Add("+1 by Orc");
                     break;
 
                 case 5:
@@ -402,20 +408,21 @@ namespace M_A_G_I_C_K
 
             var ran = new Random();
 
-            DEXStats.Value = ran.Next(6, 21);
-            STRstats.Value = ran.Next(6, 21);
-            SMRTStats.Value = ran.Next(6, 21);
-            CHAStats.Value = ran.Next(6, 21);
-            WISstats.Value = ran.Next(6, 21);
-            CONStats.Value = ran.Next(6, 21);
-
+            if (ClassDropBox.SelectedIndex == 0)
+            {
+                DEXStats.Value = ran.Next(6, 21);
+                STRstats.Value = ran.Next(6, 21);
+                SMRTStats.Value = ran.Next(6, 21);
+                CHAStats.Value = ran.Next(6, 21);
+                WISstats.Value = ran.Next(6, 21);
+                CONStats.Value = ran.Next(6, 21);
+            }
+            else
+            {
+                //randomly generated stats rolled but with preference for the ones needed by the class
+            }
         }
 
-        private void InputStatBTN_Click(object sender, EventArgs e)
-        {
-            //this will allow for you to input the stats
-
-        }
 
         //will add value changed for all the stat nums, to update the profis bounus thingy        
         private void STRstats_ValueChanged(object sender, EventArgs e)
@@ -473,6 +480,7 @@ namespace M_A_G_I_C_K
             else if (CHAStats.Value >= 14) CHAbonusTxt.Text = "+2";
         }
 
+        //main button click
         private void runBtn_Click(object sender, EventArgs e)
         {
             //collecting things to pass into the character builder
@@ -500,10 +508,19 @@ namespace M_A_G_I_C_K
 
             int Level = Convert.ToInt32(LevelPicker.Value);
 
+            //collecting all the stats
+            int[] Stats = new int[6];
 
-            Character created = new Character(SelectedRace, SelectedClass, Name, Level);
+            Stats[0] = Convert.ToInt32(STRstats.Value);
+            Stats[1] = Convert.ToInt32(DEXStats.Value);
+            Stats[2] = Convert.ToInt32(SMRTStats.Value);
+            Stats[3] = Convert.ToInt32(CONStats.Value);
+            Stats[4] = Convert.ToInt32(CHAStats.Value);
+            Stats[5] = Convert.ToInt32(WISstats.Value);
+  
+            Character created = new Character(SelectedRace, SelectedClass, Name, Level, Stats);
 
-
+            created.creatingPdf();
 
             //Ends with opening another form with the information played out more cleanly
 
