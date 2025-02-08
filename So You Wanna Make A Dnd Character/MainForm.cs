@@ -35,8 +35,6 @@ namespace M_A_G_I_C_K
         //this will change the spells you can pick etc etc based on what you pick
         private void RaceDropBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Console.WriteLine("This is Bryan's Test");
-
             /*RaceDropDown
              * Human
                 Elf
@@ -410,20 +408,21 @@ namespace M_A_G_I_C_K
 
             var ran = new Random();
 
-            DEXStats.Value = ran.Next(6, 21);
-            STRstats.Value = ran.Next(6, 21);
-            SMRTStats.Value = ran.Next(6, 21);
-            CHAStats.Value = ran.Next(6, 21);
-            WISstats.Value = ran.Next(6, 21);
-            CONStats.Value = ran.Next(6, 21);
-
+            if (ClassDropBox.SelectedIndex == 0)
+            {
+                DEXStats.Value = ran.Next(6, 21);
+                STRstats.Value = ran.Next(6, 21);
+                SMRTStats.Value = ran.Next(6, 21);
+                CHAStats.Value = ran.Next(6, 21);
+                WISstats.Value = ran.Next(6, 21);
+                CONStats.Value = ran.Next(6, 21);
+            }
+            else
+            {
+                //randomly generated stats rolled but with preference for the ones needed by the class
+            }
         }
 
-        private void InputStatBTN_Click(object sender, EventArgs e)
-        {
-            //this will allow for you to input the stats
-
-        }
 
         //will add value changed for all the stat nums, to update the profis bounus thingy        
         private void STRstats_ValueChanged(object sender, EventArgs e)

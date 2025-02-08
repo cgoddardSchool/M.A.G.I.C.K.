@@ -184,24 +184,24 @@ namespace M_A_G_I_C_K
             /*flow of pdf creation
              * 
              * creates new pdf https://kb.itextpdf.com/itext/chapter-1-introducing-basic-building-blocks
-             * copy the base pdf form to the new pdf, only first page if not spell caster (still need to figure out a bit but here https://kb.itextpdf.com/itext/chapter-6-reusing-existing-pdf-documents-net)
+             * copy the base pdf form to the new pdf, only first page if not spell caster (still need to figure out a bit but here https://kb.itextpdf.com/itext/chapter-6-/reusing-existing-pdf-documents-net)
              * start adding information to form (https://kb.itextpdf.com/itext/chapter-5-manipulating-an-existing-pdf-document-ne)
              * 
              * close form
              * 
              */
+      
 
-            //PdfWriter writer = new PdfWriter(dest);
-            //PdfDocument pdf = new PdfDocument(writer);
-            //Document document = new Document(pdf);
+            //this if for finding the current path
+            string pathToPDFFolder = Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName) + @"\PDFS\";
 
-            string CreationPath = @"C:\Users\Carson\Desktop\So You Wanna Make A Dnd Character\So You Wanna Make A Dnd Character\PDFS\" + _name + "CharacterSheet.pdf";
+            string CreationPath = pathToPDFFolder + _name + "CharacterSheet.pdf";
 
-            string basePath = @"C:\Users\Carson\Desktop\So You Wanna Make A Dnd Character\So You Wanna Make A Dnd Character\PDFS\DnD_BaseSheet.pdf";
+            string basePath = pathToPDFFolder + "DnD_BaseSheet.pdf";
 
             //creating a file at this location
             using (FileStream fs = File.Create(CreationPath));
-
+            
             //setting up the pdf to merge to
             PdfDocument CharPdf = new PdfDocument(new PdfWriter(CreationPath));
             PdfMerger merger = new PdfMerger(CharPdf);
@@ -210,7 +210,7 @@ namespace M_A_G_I_C_K
             PdfDocument basePdf = new PdfDocument(new PdfReader(basePath));
             merger.Merge(basePdf, 1, basePdf.GetNumberOfPages());
             
-            //closing the base pdf, will not be used anymore
+            //closing the pdfs, will not be used anymore
             basePdf.Close();
             merger.Close();
             CharPdf.Close();
@@ -223,10 +223,10 @@ namespace M_A_G_I_C_K
             //all the fields to fill in are here
             fields["CharacterName"].SetValue("This is a test please work");
 
-
-
-
             fillingPdf.Close();
+
+            //finally asking via pop up if you would like to move the file to your desktop
+
         }
 
         

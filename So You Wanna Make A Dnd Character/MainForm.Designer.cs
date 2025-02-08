@@ -55,7 +55,6 @@
             this.WISCheck = new System.Windows.Forms.CheckedListBox();
             this.CHACheck = new System.Windows.Forms.CheckedListBox();
             this.StatRoll = new System.Windows.Forms.Button();
-            this.InputStatBTN = new System.Windows.Forms.Button();
             this.STRstats = new System.Windows.Forms.NumericUpDown();
             this.DEXStats = new System.Windows.Forms.NumericUpDown();
             this.CONStats = new System.Windows.Forms.NumericUpDown();
@@ -350,16 +349,6 @@
             this.StatRoll.UseVisualStyleBackColor = true;
             this.StatRoll.Click += new System.EventHandler(this.StatRoll_Click);
             // 
-            // InputStatBTN
-            // 
-            this.InputStatBTN.Location = new System.Drawing.Point(446, 115);
-            this.InputStatBTN.Name = "InputStatBTN";
-            this.InputStatBTN.Size = new System.Drawing.Size(100, 23);
-            this.InputStatBTN.TabIndex = 34;
-            this.InputStatBTN.Text = "Input Stats";
-            this.InputStatBTN.UseVisualStyleBackColor = true;
-            this.InputStatBTN.Click += new System.EventHandler(this.InputStatBTN_Click);
-            // 
             // STRstats
             // 
             this.STRstats.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.77391F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -574,7 +563,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1098, 647);
+            this.ClientSize = new System.Drawing.Size(1110, 669);
             this.Controls.Add(this.CHAbonusTxt);
             this.Controls.Add(this.WISbonusTxt);
             this.Controls.Add(this.SMRTbonusTxt);
@@ -587,7 +576,6 @@
             this.Controls.Add(this.CONStats);
             this.Controls.Add(this.DEXStats);
             this.Controls.Add(this.STRstats);
-            this.Controls.Add(this.InputStatBTN);
             this.Controls.Add(this.StatRoll);
             this.Controls.Add(this.CHACheck);
             this.Controls.Add(this.WISCheck);
@@ -660,7 +648,6 @@
         private System.Windows.Forms.CheckedListBox WISCheck;
         private System.Windows.Forms.CheckedListBox CHACheck;
         private System.Windows.Forms.Button StatRoll;
-        private System.Windows.Forms.Button InputStatBTN;
         private System.Windows.Forms.NumericUpDown STRstats;
         private System.Windows.Forms.NumericUpDown DEXStats;
         private System.Windows.Forms.NumericUpDown CONStats;
