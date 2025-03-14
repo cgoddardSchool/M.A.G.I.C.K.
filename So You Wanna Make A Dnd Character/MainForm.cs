@@ -241,7 +241,7 @@ namespace M_A_G_I_C_K
 
                 default:
                     //nothing change nothing
-
+                    //playerIcon.Image = Image.FromFile(@"C:\Users\Nekos\source\repos\M.A.G.I.C.K\So You Wanna Make A Dnd Character\Resources\Default.png");
                     break;
             }
 
