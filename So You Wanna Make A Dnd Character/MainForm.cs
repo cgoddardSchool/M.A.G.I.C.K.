@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Web.Routing;
 using System.Windows.Forms;
 using static iText.Signatures.LtvVerification;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace M_A_G_I_C_K
 {
@@ -60,27 +61,129 @@ namespace M_A_G_I_C_K
 
             switch (RaceDropBox.SelectedIndex)
             {
-                case 1:
-                    //Human
+                case 1: //human
+                //--- I didn't know what to do so i gave +1 to 3 stats, same ASI just different.
+                    // +1 to STR
+                    STRCheck.Items.Add("+1 Racial Bonus");
+                    try
+                    {
+                        STRstats.Value = STRstats.Value + 1;
+                    }
+                    catch
+                    {
+                        STRstats.Value = 20;
+                        STRCheck.Items.Add("Racial bonus not applied, natural score may not exceed 20");
+                    }
+                    // +1 to INT
+                    try
+                    {
+                        SMRTCheck.Items.Add("+1 Racial Bonus");
+                        SMRTStats.Value = SMRTStats.Value + 1;
+                    }
+                    catch
+                    {
+                        SMRTStats.Value = 20;
+                        SMRTCheck.Items.Add("Racial bonus not applied, natural score may not exceed 20");
+                    }
+                    // +1 to WIS
+                    try
+                    {
+                        WISCheck.Items.Add("+1 Racial Bonus");
+                        WISstats.Value = WISstats.Value + 1;
+                    }
+                    catch
+                    {
+                        WISstats.Value = 20;
+                        WISCheck.Items.Add("Racial bonus not applied, natural score may not exceed 20");
+                    }
+                    break;
+                case 2: //elf
+                    // +2 to DEX
+                    DEXCheck.Items.Add("+2 Racial Bonus");
+                    try
+                    {
+                        DEXCheck.Items.Add("+2 Racial Bonus");
+                        DEXStats.Value = DEXStats.Value + 2;
+                    }
+                    catch
+                    {
+                        DEXStats.Value = 20;
+                        DEXCheck.Items.Add("Racial bonus not applied, natural score may not exceed 20");
+                    }
+                    // +1 to INT   (went w/ high elf bc idk)
+                    try
+                    {
+                        SMRTCheck.Items.Add("+1 Racial Bonus");
+                        SMRTStats.Value = SMRTStats.Value + 1;
+                    }
+                    catch
+                    {
+                        SMRTStats.Value = 20;
+                        SMRTCheck.Items.Add("Racial bonus not applied, natural score may not exceed 20");
+                    }
+                    break;
+                case 3: //Dwarf
+                    //+2 to CON
+                    try
+                    {
+                        CONCheck.Items.Add("+2 Racial Bonus");
+                        CONStats.Value = CONStats.Value + 2;
+                    }
+                    catch
+                    {
+                        CONStats.Value = 20;
+                        CONCheck.Items.Add("Racial bonus not applied, natural score may not exceed 20");
+                    }
 
                     break;
-                case 2:
-                    //elf
+                case 4: //orc
 
+                    // +2 to STR
+                    try
+                    {                    
+                        STRCheck.Items.Add("+2 Racial Bonus");
+                        STRstats.Value = STRstats.Value + 2;
+                    }
+                    catch
+                    {
+                        STRstats.Value = 20;
+                        STRCheck.Items.Add("Racial bonus not applied, natural score may not exceed 20");
+                    }
+                    // +1 to CON
+                     try
+                    {
+                        CONCheck.Items.Add("+1 Racial Bonus");
+                        CONStats.Value = CONStats.Value + 1;
+                    }
+                    catch
+                    {
+                        CONStats.Value = 20;
+                        CONCheck.Items.Add("Racial bonus not applied, natural score may not exceed 20");
+                    }
                     break;
-
-                case 3:
-                    //Dwarf
-
-                    break;
-
-                case 4:
-                    //orc
-                    STRCheck.Items.Add("+1 by Orc");
-                    break;
-
-                case 5:
-                    //DragonBorn
+                case 5: //DragonBorn
+                    // +2 to STR
+                    STRCheck.Items.Add("+2 Racial Bonus");
+                    try
+                    {
+                        STRstats.Value = STRstats.Value + 2;
+                    }
+                    catch
+                    {
+                        STRstats.Value = 20;
+                        STRCheck.Items.Add("Racial bonus not applied, natural score may not exceed 20");
+                    }
+                    // +1 to CHA
+                    try
+                    {                    
+                        CHACheck.Items.Add("+1 Racial Bonus");
+                        CHAStats.Value = CHAStats.Value + 1;
+                    }
+                    catch
+                    {
+                        CHAStats.Value = 20;
+                        CHACheck.Items.Add("Racial bonus not applied, natural score may not exceed 20");
+                    }
 
                     break;
 
@@ -1210,6 +1313,87 @@ namespace M_A_G_I_C_K
             if (e.NewValue == CheckState.Checked && SpellCheckBox.CheckedItems.Count >= spellCaster.SpellAmountAllowed)
             {
                 e.NewValue = CheckState.Unchecked;
+            }
+        }
+
+        
+        //For Random Name Generator
+        //this was oddly painful to make happen ~ Duncan
+        private void RanNameBtn_Click(object sender, EventArgs e)
+        {
+            //connection string to pull names from database
+            string connectionString = @"Data Source=" + Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName) + @"\Databases\Primary Database.db";
+
+            List<string> firstNameList = new List<string>();
+            List<string> secondNameList = new List<string>();
+            Random rng = new Random();
+
+            //for getting race specific for query
+            string currentRace = RaceDropBox.Text.ToLower();
+           
+            //variables to store official selection in case of need to reuse post-connection close
+            string randomFname = "";
+            string randomLname = "";
+
+            //queries for pulling from db, $ allows to insert variable
+            string fnameQuery = $"SELECT name FROM Names WHERE nameType = 'fname' AND race = '{currentRace}'";
+            string lnameQuery = $"SELECT name FROM Names WHERE nameType = 'lname' AND race = '{currentRace}'";
+
+            using (var conn = new SQLiteConnection(connectionString))
+            {
+                conn.Open();
+
+                //query connection for first name
+                using (SQLiteCommand command = new SQLiteCommand(fnameQuery, conn))
+                {
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string name = reader.GetString(reader.GetOrdinal("name"));
+
+                            firstNameList.Add(name);
+                        }
+                    }
+                }
+                //query connection for last name
+                using (SQLiteCommand command = new SQLiteCommand(lnameQuery, conn))
+                {
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string name = reader.GetString(reader.GetOrdinal("name"));
+
+                            secondNameList.Add(name);
+                        }
+                    }
+                }
+
+                //checks to see if lists are empty jic users are dumb and click the button w/o a class
+                if (firstNameList.Count == 0 || secondNameList.Count == 0)
+                {
+                    // message box to tell users to check their race selection >:(
+                    MessageBox.Show("No names found? Make sure you have selected a race!");  
+                    
+                    //so it doesnt explode the damn program
+                    return;  
+                }
+
+                //ints to store a randomly selected index              
+                int fnameRngSelection = rng.Next(firstNameList.Count);
+                int lnameRngSelection = rng.Next(secondNameList.Count);
+
+                //storing the name selected
+                randomFname = firstNameList[fnameRngSelection];
+                randomLname = secondNameList[lnameRngSelection];
+   
+                //assigning the data
+                FirstNameTxt.Text = randomFname;
+                SecondNameTxt.Text = randomLname;
+
+                conn.Close();
+        
             }
         }
     }

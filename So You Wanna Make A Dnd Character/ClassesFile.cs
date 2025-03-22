@@ -68,7 +68,7 @@ namespace M_A_G_I_C_K
                     Console.WriteLine("Selected Human");
 
                     _CharRace = new Human();
-
+ 
                     break;
                 case 2:
                     Console.WriteLine("Selected Elf");

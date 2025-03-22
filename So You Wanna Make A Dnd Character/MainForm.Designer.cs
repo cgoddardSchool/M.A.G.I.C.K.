@@ -85,7 +85,6 @@
             this.cantripLblCount = new System.Windows.Forms.Label();
             this.spellbookLblCount = new System.Windows.Forms.Label();
             this.RanNameBtn = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.randomNameLbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.LevelPicker)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.STRstats)).BeginInit();
@@ -202,7 +201,7 @@
             this.runBtn.Location = new System.Drawing.Point(532, 630);
             this.runBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.runBtn.Name = "runBtn";
-            this.runBtn.Size = new System.Drawing.Size(259, 37);
+            this.runBtn.Size = new System.Drawing.Size(281, 37);
             this.runBtn.TabIndex = 9;
             this.runBtn.Text = "Print Character";
             this.runBtn.UseVisualStyleBackColor = true;
@@ -297,7 +296,7 @@
             0});
             this.LevelPicker.Name = "LevelPicker";
             this.LevelPicker.ReadOnly = true;
-            this.LevelPicker.Size = new System.Drawing.Size(50, 44);
+            this.LevelPicker.Size = new System.Drawing.Size(50, 45);
             this.LevelPicker.TabIndex = 24;
             this.LevelPicker.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.LevelPicker.Value = new decimal(new int[] {
@@ -321,7 +320,7 @@
             this.STRCheck.FormattingEnabled = true;
             this.STRCheck.Location = new System.Drawing.Point(639, 56);
             this.STRCheck.Name = "STRCheck";
-            this.STRCheck.Size = new System.Drawing.Size(146, 38);
+            this.STRCheck.Size = new System.Drawing.Size(174, 38);
             this.STRCheck.TabIndex = 26;
             // 
             // DEXCheck
@@ -329,7 +328,7 @@
             this.DEXCheck.FormattingEnabled = true;
             this.DEXCheck.Location = new System.Drawing.Point(639, 115);
             this.DEXCheck.Name = "DEXCheck";
-            this.DEXCheck.Size = new System.Drawing.Size(146, 38);
+            this.DEXCheck.Size = new System.Drawing.Size(174, 38);
             this.DEXCheck.TabIndex = 27;
             // 
             // CONCheck
@@ -337,7 +336,7 @@
             this.CONCheck.FormattingEnabled = true;
             this.CONCheck.Location = new System.Drawing.Point(639, 175);
             this.CONCheck.Name = "CONCheck";
-            this.CONCheck.Size = new System.Drawing.Size(146, 38);
+            this.CONCheck.Size = new System.Drawing.Size(174, 38);
             this.CONCheck.TabIndex = 28;
             // 
             // SMRTCheck
@@ -345,7 +344,7 @@
             this.SMRTCheck.FormattingEnabled = true;
             this.SMRTCheck.Location = new System.Drawing.Point(639, 237);
             this.SMRTCheck.Name = "SMRTCheck";
-            this.SMRTCheck.Size = new System.Drawing.Size(146, 38);
+            this.SMRTCheck.Size = new System.Drawing.Size(174, 38);
             this.SMRTCheck.TabIndex = 29;
             // 
             // WISCheck
@@ -353,7 +352,7 @@
             this.WISCheck.FormattingEnabled = true;
             this.WISCheck.Location = new System.Drawing.Point(639, 297);
             this.WISCheck.Name = "WISCheck";
-            this.WISCheck.Size = new System.Drawing.Size(146, 38);
+            this.WISCheck.Size = new System.Drawing.Size(174, 38);
             this.WISCheck.TabIndex = 30;
             // 
             // CHACheck
@@ -361,14 +360,14 @@
             this.CHACheck.FormattingEnabled = true;
             this.CHACheck.Location = new System.Drawing.Point(639, 357);
             this.CHACheck.Name = "CHACheck";
-            this.CHACheck.Size = new System.Drawing.Size(146, 38);
+            this.CHACheck.Size = new System.Drawing.Size(174, 38);
             this.CHACheck.TabIndex = 31;
             // 
             // StatRoll
             // 
             this.StatRoll.Location = new System.Drawing.Point(530, 406);
             this.StatRoll.Name = "StatRoll";
-            this.StatRoll.Size = new System.Drawing.Size(259, 39);
+            this.StatRoll.Size = new System.Drawing.Size(283, 39);
             this.StatRoll.TabIndex = 32;
             this.StatRoll.Text = "Stat Randomizer";
             this.StatRoll.UseVisualStyleBackColor = true;
@@ -390,7 +389,7 @@
             0});
             this.STRstats.Name = "STRstats";
             this.STRstats.ReadOnly = true;
-            this.STRstats.Size = new System.Drawing.Size(62, 35);
+            this.STRstats.Size = new System.Drawing.Size(62, 36);
             this.STRstats.TabIndex = 35;
             this.STRstats.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.STRstats.Value = new decimal(new int[] {
@@ -416,7 +415,7 @@
             0});
             this.DEXStats.Name = "DEXStats";
             this.DEXStats.ReadOnly = true;
-            this.DEXStats.Size = new System.Drawing.Size(62, 35);
+            this.DEXStats.Size = new System.Drawing.Size(62, 36);
             this.DEXStats.TabIndex = 36;
             this.DEXStats.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.DEXStats.Value = new decimal(new int[] {
@@ -442,7 +441,7 @@
             0});
             this.CONStats.Name = "CONStats";
             this.CONStats.ReadOnly = true;
-            this.CONStats.Size = new System.Drawing.Size(62, 35);
+            this.CONStats.Size = new System.Drawing.Size(62, 36);
             this.CONStats.TabIndex = 37;
             this.CONStats.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.CONStats.Value = new decimal(new int[] {
@@ -468,7 +467,7 @@
             0});
             this.SMRTStats.Name = "SMRTStats";
             this.SMRTStats.ReadOnly = true;
-            this.SMRTStats.Size = new System.Drawing.Size(62, 35);
+            this.SMRTStats.Size = new System.Drawing.Size(62, 36);
             this.SMRTStats.TabIndex = 38;
             this.SMRTStats.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.SMRTStats.Value = new decimal(new int[] {
@@ -494,7 +493,7 @@
             0});
             this.WISstats.Name = "WISstats";
             this.WISstats.ReadOnly = true;
-            this.WISstats.Size = new System.Drawing.Size(62, 35);
+            this.WISstats.Size = new System.Drawing.Size(62, 36);
             this.WISstats.TabIndex = 39;
             this.WISstats.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.WISstats.Value = new decimal(new int[] {
@@ -520,7 +519,7 @@
             0});
             this.CHAStats.Name = "CHAStats";
             this.CHAStats.ReadOnly = true;
-            this.CHAStats.Size = new System.Drawing.Size(62, 35);
+            this.CHAStats.Size = new System.Drawing.Size(62, 36);
             this.CHAStats.TabIndex = 40;
             this.CHAStats.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.CHAStats.Value = new decimal(new int[] {
@@ -640,14 +639,14 @@
             this.statsLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.statsLbl.Location = new System.Drawing.Point(538, 9);
             this.statsLbl.Name = "statsLbl";
-            this.statsLbl.Size = new System.Drawing.Size(218, 29);
+            this.statsLbl.Size = new System.Drawing.Size(233, 29);
             this.statsLbl.TabIndex = 53;
             this.statsLbl.Text = "Character Statistics";
             // 
             // playerIcon
             // 
             this.playerIcon.Image = global::So_You_Wanna_Make_A_Dnd_Character.Properties.Resources.Default;
-            this.playerIcon.Location = new System.Drawing.Point(11, 19);
+            this.playerIcon.Location = new System.Drawing.Point(11, 16);
             this.playerIcon.Name = "playerIcon";
             this.playerIcon.Size = new System.Drawing.Size(192, 192);
             this.playerIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -713,7 +712,7 @@
             // 
             this.ProgressBarBtn.Location = new System.Drawing.Point(532, 599);
             this.ProgressBarBtn.Name = "ProgressBarBtn";
-            this.ProgressBarBtn.Size = new System.Drawing.Size(259, 26);
+            this.ProgressBarBtn.Size = new System.Drawing.Size(281, 26);
             this.ProgressBarBtn.TabIndex = 73;
             this.ProgressBarBtn.Text = "PROGRESS BAR SIZING";
             this.ProgressBarBtn.UseVisualStyleBackColor = true;
@@ -753,15 +752,7 @@
             this.RanNameBtn.TabIndex = 77;
             this.RanNameBtn.Text = "RNG";
             this.RanNameBtn.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 16);
-            this.label1.TabIndex = 78;
-            this.label1.Text = "label1";
+            this.RanNameBtn.Click += new System.EventHandler(this.RanNameBtn_Click);
             // 
             // randomNameLbl
             // 
@@ -776,9 +767,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(805, 684);
+            this.ClientSize = new System.Drawing.Size(825, 684);
             this.Controls.Add(this.randomNameLbl);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.RanNameBtn);
             this.Controls.Add(this.spellbookLblCount);
             this.Controls.Add(this.cantripLblCount);
@@ -912,7 +902,6 @@
         private System.Windows.Forms.Label cantripLblCount;
         private System.Windows.Forms.Label spellbookLblCount;
         private System.Windows.Forms.Button RanNameBtn;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label randomNameLbl;
     }
 }
