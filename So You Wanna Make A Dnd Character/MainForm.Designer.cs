@@ -87,6 +87,7 @@
             this.SMRTtbx = new System.Windows.Forms.RichTextBox();
             this.WIStbx = new System.Windows.Forms.RichTextBox();
             this.CHAtbx = new System.Windows.Forms.RichTextBox();
+            this.featLbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.LevelPicker)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.STRstats)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DEXStats)).BeginInit();
@@ -205,7 +206,7 @@
             this.runBtn.Name = "runBtn";
             this.runBtn.Size = new System.Drawing.Size(281, 37);
             this.runBtn.TabIndex = 9;
-            this.runBtn.Text = "Print Character";
+            this.runBtn.Text = "Finalize Character";
             this.runBtn.UseVisualStyleBackColor = true;
             this.runBtn.Click += new System.EventHandler(this.runBtn_Click);
             // 
@@ -583,9 +584,9 @@
             this.classFeaturesLbl.AutoSize = true;
             this.classFeaturesLbl.Location = new System.Drawing.Point(342, 441);
             this.classFeaturesLbl.Name = "classFeaturesLbl";
-            this.classFeaturesLbl.Size = new System.Drawing.Size(97, 16);
+            this.classFeaturesLbl.Size = new System.Drawing.Size(41, 16);
             this.classFeaturesLbl.TabIndex = 52;
-            this.classFeaturesLbl.Text = "Class Features";
+            this.classFeaturesLbl.Text = "Feats";
             // 
             // statsLbl
             // 
@@ -775,11 +776,21 @@
             this.CHAtbx.TabIndex = 86;
             this.CHAtbx.Text = "";
             // 
+            // featLbl
+            // 
+            this.featLbl.AutoSize = true;
+            this.featLbl.Location = new System.Drawing.Point(465, 440);
+            this.featLbl.Name = "featLbl";
+            this.featLbl.Size = new System.Drawing.Size(47, 16);
+            this.featLbl.TabIndex = 87;
+            this.featLbl.Text = "( X , Y )";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(825, 684);
+            this.Controls.Add(this.featLbl);
             this.Controls.Add(this.CHAtbx);
             this.Controls.Add(this.WIStbx);
             this.Controls.Add(this.SMRTtbx);
@@ -839,6 +850,7 @@
             this.Controls.Add(this.RaceLabel);
             this.Controls.Add(this.RaceDropBox);
             this.Controls.Add(this.ClassDropBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainForm";
             this.Text = "Multifaceted Assistant Generating Iconic Characters Kit";
@@ -917,6 +929,7 @@
         private System.Windows.Forms.RichTextBox SMRTtbx;
         private System.Windows.Forms.RichTextBox WIStbx;
         private System.Windows.Forms.RichTextBox CHAtbx;
+        private System.Windows.Forms.Label featLbl;
     }
 }
 
