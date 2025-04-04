@@ -1248,7 +1248,7 @@ namespace M_A_G_I_C_K
             Stats[4] = Convert.ToInt32(CHAStats.Value);
             Stats[5] = Convert.ToInt32(WISstats.Value);
 
-            string Background = "testing string!! uwu";
+            string Background = backgroundTb1.Text;
 
 
             //equipment will be all stored in one variable, the [0] will be weapon, [1] armor and everything afterwards equipment
@@ -1364,7 +1364,7 @@ namespace M_A_G_I_C_K
         }
         private void FeatCheckBox_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            if (e.NewValue == CheckState.Checked && ArmCheckbox.CheckedItems.Count == 3)
+            if (e.NewValue == CheckState.Checked && FeatCheckBox.CheckedItems.Count == 3)
             {
                 e.NewValue = CheckState.Unchecked;
             }

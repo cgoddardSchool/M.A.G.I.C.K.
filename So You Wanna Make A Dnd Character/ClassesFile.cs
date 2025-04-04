@@ -19,6 +19,7 @@ using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Data.SQLite;
 using static iText.Signatures.LtvVerification;
+using iText.Layout.Element;
 
 //THIS FILE HAS CONSOLE.WRITELINES THAT NEED TO BE REMOVED BEFORE HANDING IN
 
@@ -544,11 +545,23 @@ namespace M_A_G_I_C_K
             fields["CharacterName"].SetValue(_name);
             fields["ClassLevel"].SetValue(_CharClass.CharClassName + " " + _CharClass.Level);
             fields["Race"].SetValue(_CharRace.CharRace);
-            fields["Background"].SetValue(_background); //might need to change later depeneding on how we do that backgrounds
 
 
             //sepereate the background
-            string[] sepStrings = ["Background:", "Personality:", "Ideal:", "Flaw:", "Bond,"];
+            string[] sepStrings = new string[5];
+            sepStrings[0] = "Background:";
+            sepStrings[1] = "Personality:";
+            sepStrings[2] = "Ideal:";
+            sepStrings[3] = "Flaw:";
+            sepStrings[4] = "Bond:";
+
+            string[] sepBackground = _background.Split(sepStrings, StringSplitOptions.RemoveEmptyEntries);
+
+            fields["Background"].SetValue(sepBackground[0]);
+            fields["PersonalityTraits "].SetValue(sepBackground[1]);
+            fields["Ideals"].SetValue(sepBackground[2]);
+            fields["Bonds"].SetValue(sepBackground[3]);
+            fields["Flaws"].SetValue(sepBackground[4]);
 
 
             //side table for values
@@ -573,7 +586,6 @@ namespace M_A_G_I_C_K
             fields["Speed"].SetValue(_CharRace.Speed);
             fields["HPMax"].SetValue(_CharClass.Hitpoints.ToString());
             fields["Initiative"].SetValue(_StatBonus[1].ToString());
-            fields["HDTotal"].SetValue("");
             fields["HD"].SetValue(_CharClass.HitpointDice);
 
             //might need to concat a bunch of shit before inputting it
@@ -597,7 +609,7 @@ namespace M_A_G_I_C_K
                             while (reader.Read())
                             {
                                 
-                                allFeats += thing + ": " + reader.GetString(reader.GetOrdinal("Damage")) + ", ";
+                                allFeats += thing + ": " + reader.GetString(reader.GetOrdinal("Description")) + "\n ";
 
                             }
                         }
@@ -827,6 +839,8 @@ namespace M_A_G_I_C_K
             }
         }
 
+        public abstract void skillFilling(IDictionary<String, PdfFormField> fields);
+
     }
     public abstract class spellCaster : DndClass
     {
@@ -865,6 +879,24 @@ namespace M_A_G_I_C_K
             fields["SpellSaveDC 2"].SetValue(_spellSaveDC);
             fields["SpellAtkBonus 2"].SetValue(_spellAtkBonus);
 
+
+            switch (_Level)
+            {
+                case 1:
+                    fields["SlotsTotalFirst"].SetValue("2");
+
+
+                    break;
+                case 2:
+                    fields["SlotsTotalFirst"].SetValue("3");
+                    break;
+                case 3:
+                    fields["SlotsTotalFirst"].SetValue("4");
+                    fields["SlotsTotalSecond"].SetValue("2");
+
+
+                    break;
+            }
 
             //loop for cantrips
             int currentSpell = 1;
@@ -946,6 +978,11 @@ namespace M_A_G_I_C_K
             _hitpointDice = "D10";
             _ProfisBonus = 2;
         }
+
+        public override void skillFilling(IDictionary<string, PdfFormField> fields)
+        {
+            
+        }
     }
 
     class Cleric : spellCaster 
@@ -992,6 +1029,10 @@ namespace M_A_G_I_C_K
             return currentSpells;
         }
 
+        public override void skillFilling(IDictionary<string, PdfFormField> fields)
+        {
+
+        }
     }
 
     class Wizard : spellCaster 
@@ -1041,6 +1082,10 @@ namespace M_A_G_I_C_K
 
             return currentSpells;
         }
+        public override void skillFilling(IDictionary<string, PdfFormField> fields)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     class Rouge : DndClass 
@@ -1052,6 +1097,10 @@ namespace M_A_G_I_C_K
             _CharClassName = "Rouge";
             _hitpointDice = "D8";
             _ProfisBonus = 2;
+        }
+        public override void skillFilling(IDictionary<string, PdfFormField> fields)
+        {
+            throw new NotImplementedException();
         }
     }
 
@@ -1098,6 +1147,11 @@ namespace M_A_G_I_C_K
                 connection.Close();
             }
             return currentSpells;
+        }
+
+        public override void skillFilling(IDictionary<string, PdfFormField> fields)
+        {
+
         }
     }
 
