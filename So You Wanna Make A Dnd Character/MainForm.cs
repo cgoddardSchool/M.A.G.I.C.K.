@@ -1300,6 +1300,14 @@ namespace M_A_G_I_C_K
             {
                 e.NewValue = CheckState.Unchecked;
             }
+            else if (e.NewValue == CheckState.Checked)
+            {
+                featLbl.Text = "( " + (FeatCheckBox.CheckedItems.Count + 1) + " / 3 )";
+            }
+            else if (e.NewValue == CheckState.Unchecked)
+            {
+                featLbl.Text = "( " + (FeatCheckBox.CheckedItems.Count - 1) + " / 3 )";
+            }
         }
 
 
