@@ -198,6 +198,7 @@
             this.FeatCheckBox.Name = "FeatCheckBox";
             this.FeatCheckBox.Size = new System.Drawing.Size(165, 208);
             this.FeatCheckBox.TabIndex = 8;
+            this.FeatCheckBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.FeatCheckBox_ItemCheck);
             // 
             // runBtn
             // 
@@ -299,7 +300,7 @@
             0});
             this.LevelPicker.Name = "LevelPicker";
             this.LevelPicker.ReadOnly = true;
-            this.LevelPicker.Size = new System.Drawing.Size(50, 45);
+            this.LevelPicker.Size = new System.Drawing.Size(50, 44);
             this.LevelPicker.TabIndex = 24;
             this.LevelPicker.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.LevelPicker.Value = new decimal(new int[] {
@@ -344,7 +345,7 @@
             0});
             this.STRstats.Name = "STRstats";
             this.STRstats.ReadOnly = true;
-            this.STRstats.Size = new System.Drawing.Size(62, 36);
+            this.STRstats.Size = new System.Drawing.Size(62, 35);
             this.STRstats.TabIndex = 35;
             this.STRstats.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.STRstats.Value = new decimal(new int[] {
@@ -370,7 +371,7 @@
             0});
             this.DEXStats.Name = "DEXStats";
             this.DEXStats.ReadOnly = true;
-            this.DEXStats.Size = new System.Drawing.Size(62, 36);
+            this.DEXStats.Size = new System.Drawing.Size(62, 35);
             this.DEXStats.TabIndex = 36;
             this.DEXStats.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.DEXStats.Value = new decimal(new int[] {
@@ -396,7 +397,7 @@
             0});
             this.CONStats.Name = "CONStats";
             this.CONStats.ReadOnly = true;
-            this.CONStats.Size = new System.Drawing.Size(62, 36);
+            this.CONStats.Size = new System.Drawing.Size(62, 35);
             this.CONStats.TabIndex = 37;
             this.CONStats.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.CONStats.Value = new decimal(new int[] {
@@ -422,7 +423,7 @@
             0});
             this.SMRTStats.Name = "SMRTStats";
             this.SMRTStats.ReadOnly = true;
-            this.SMRTStats.Size = new System.Drawing.Size(62, 36);
+            this.SMRTStats.Size = new System.Drawing.Size(62, 35);
             this.SMRTStats.TabIndex = 38;
             this.SMRTStats.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.SMRTStats.Value = new decimal(new int[] {
@@ -448,7 +449,7 @@
             0});
             this.WISstats.Name = "WISstats";
             this.WISstats.ReadOnly = true;
-            this.WISstats.Size = new System.Drawing.Size(62, 36);
+            this.WISstats.Size = new System.Drawing.Size(62, 35);
             this.WISstats.TabIndex = 39;
             this.WISstats.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.WISstats.Value = new decimal(new int[] {
@@ -474,7 +475,7 @@
             0});
             this.CHAStats.Name = "CHAStats";
             this.CHAStats.ReadOnly = true;
-            this.CHAStats.Size = new System.Drawing.Size(62, 36);
+            this.CHAStats.Size = new System.Drawing.Size(62, 35);
             this.CHAStats.TabIndex = 40;
             this.CHAStats.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.CHAStats.Value = new decimal(new int[] {
@@ -594,7 +595,7 @@
             this.statsLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.statsLbl.Location = new System.Drawing.Point(538, 9);
             this.statsLbl.Name = "statsLbl";
-            this.statsLbl.Size = new System.Drawing.Size(237, 29);
+            this.statsLbl.Size = new System.Drawing.Size(223, 29);
             this.statsLbl.TabIndex = 53;
             this.statsLbl.Text = "Character Attributes";
             // 
@@ -781,9 +782,9 @@
             this.featLbl.AutoSize = true;
             this.featLbl.Location = new System.Drawing.Point(465, 440);
             this.featLbl.Name = "featLbl";
-            this.featLbl.Size = new System.Drawing.Size(47, 16);
+            this.featLbl.Size = new System.Drawing.Size(44, 16);
             this.featLbl.TabIndex = 87;
-            this.featLbl.Text = "( X , Y )";
+            this.featLbl.Text = "( 0 , 3 )";
             // 
             // MainForm
             // 

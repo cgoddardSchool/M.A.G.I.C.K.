@@ -19,6 +19,7 @@ using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Data.SQLite;
 using static iText.Signatures.LtvVerification;
+using iText.Layout.Element;
 
 //THIS FILE HAS CONSOLE.WRITELINES THAT NEED TO BE REMOVED BEFORE HANDING IN
 
@@ -544,7 +545,24 @@ namespace M_A_G_I_C_K
             fields["CharacterName"].SetValue(_name);
             fields["ClassLevel"].SetValue(_CharClass.CharClassName + " " + _CharClass.Level);
             fields["Race"].SetValue(_CharRace.CharRace);
-            fields["Background"].SetValue(_background); //might need to change later depeneding on how we do that backgrounds
+
+
+            //sepereate the background
+            string[] sepStrings = new string[5];
+            sepStrings[0] = "Background:";
+            sepStrings[1] = "Personality:";
+            sepStrings[2] = "Ideal:";
+            sepStrings[3] = "Flaw:";
+            sepStrings[4] = "Bond:";
+
+            string[] sepBackground = _background.Split(sepStrings, StringSplitOptions.RemoveEmptyEntries);
+
+            fields["Background"].SetValue(sepBackground[0]);
+            fields["PersonalityTraits "].SetValue(sepBackground[1]);
+            fields["Ideals"].SetValue(sepBackground[2]);
+            fields["Bonds"].SetValue(sepBackground[3]);
+            fields["Flaws"].SetValue(sepBackground[4]);
+
 
             //side table for values
             fields["STR"].SetValue(_STR.ToString());
@@ -564,18 +582,41 @@ namespace M_A_G_I_C_K
             fields["Passive"].SetValue(_WIS.ToString());
 
             //center thingy
-            fields["AC"].SetValue("");
+            fields["AC"].SetValue(_AC.ToString());
             fields["Speed"].SetValue(_CharRace.Speed);
-            fields["HPMax"].SetValue("");
+            fields["HPMax"].SetValue(_CharClass.Hitpoints.ToString());
             fields["Initiative"].SetValue(_StatBonus[1].ToString());
-            fields["HDTotal"].SetValue("");
-            fields["HD"].SetValue("");
+            fields["HD"].SetValue(_CharClass.HitpointDice);
 
             //might need to concat a bunch of shit before inputting it
             string allFeats = "";
             foreach(string thing in _feats)
             {
-                allFeats += thing + ", ";
+                using (var connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    //finally a query
+                    string query = @"
+                         SELECT Description
+                         FROM GeneralFeats
+                         Where Name = '" + thing + "'";
+
+                    using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                    {
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                
+                                allFeats += thing + ": " + reader.GetString(reader.GetOrdinal("Description")) + "\n ";
+
+                            }
+                        }
+                    }
+
+                    connection.Close();
+                }
             }
             fields["Features and Traits"].SetValue(allFeats);
            
@@ -615,9 +656,10 @@ namespace M_A_G_I_C_K
             }
 
             fields["Wpn Name"].SetValue(_weapon);
-            fields["Wpn1 AtkBonus"].SetValue("");
+            fields["Wpn1 AtkBonus"].SetValue(_StatBonus[0].ToString());
             fields["Wpn1 Damage"].SetValue(damage);
 
+            _CharClass.skillFilling(fields, _StatBonus, _ProfisBonus);
 
             fillingPdf.Close();
 
@@ -798,6 +840,8 @@ namespace M_A_G_I_C_K
             }
         }
 
+        public abstract void skillFilling(IDictionary<String, PdfFormField> fields, int[] statbonus, int profBonus);
+
     }
     public abstract class spellCaster : DndClass
     {
@@ -829,16 +873,31 @@ namespace M_A_G_I_C_K
 
         public void fillingSpellsPdf(IDictionary<String, PdfFormField> fields)
         {
-            //setting these to defaults just to avoid errors from empty, will need to be updated later
-            _spellSaveDC = "Null";
-            _spellAtkBonus = "Null";
-
+            
             //top section
             fields["Spellcasting Class 2"].SetValue(_CharClassName);
             fields["SpellcastingAbility 2"].SetValue(_spellAbility);
             fields["SpellSaveDC 2"].SetValue(_spellSaveDC);
             fields["SpellAtkBonus 2"].SetValue(_spellAtkBonus);
 
+
+            switch (_Level)
+            {
+                case 1:
+                    fields["SlotsTotalFirst"].SetValue("2");
+
+
+                    break;
+                case 2:
+                    fields["SlotsTotalFirst"].SetValue("3");
+                    break;
+                case 3:
+                    fields["SlotsTotalFirst"].SetValue("4");
+                    fields["SlotsTotalSecond"].SetValue("2");
+
+
+                    break;
+            }
 
             //loop for cantrips
             int currentSpell = 1;
@@ -920,6 +979,60 @@ namespace M_A_G_I_C_K
             _hitpointDice = "D10";
             _ProfisBonus = 2;
         }
+
+        public override void skillFilling(IDictionary<string, PdfFormField> fields, int[] statbonus, int profBonus)
+        {
+            //saving throws prof
+            fields["CheckBoxStr"].SetValue("01", true);
+            fields["CheckBoxCon"].SetValue("01", true);
+
+            //setting variables
+            /*
+             * 
+             * Stats[0] = STR;
+                Stats[1] = DEX
+                Stats[2] = SMRT
+                Stats[3] = CON;
+                Stats[4] = CHA;
+                Stats[5] = WIS;
+             * 
+             */
+
+            fields["ST Strength"].SetValue((statbonus[0] + profBonus).ToString());
+            fields["ST Dexterity"].SetValue(statbonus[1].ToString());
+            fields["ST Constitution"].SetValue((statbonus[2] + profBonus).ToString());
+            fields["ST Intelligence"].SetValue(statbonus[3].ToString());
+            fields["ST Wisdom"].SetValue(statbonus[4].ToString());
+            fields["ST Charisma"].SetValue(statbonus[5].ToString());
+
+            //strength skills
+            fields["Athletics"].SetValue(statbonus[0].ToString());
+
+            //dex skills
+            fields["Acrobatics"].SetValue(statbonus[1].ToString());
+            fields["Stealth "].SetValue(statbonus[1].ToString());
+            fields["SleightofHand"].SetValue(statbonus[1].ToString());
+
+            //int skills
+            fields["Arcana"].SetValue(statbonus[3].ToString());
+            fields["History "].SetValue(statbonus[3].ToString());
+            fields["Investigation "].SetValue(statbonus[3].ToString());
+            fields["Nature"].SetValue(statbonus[3].ToString());
+            fields["Religion"].SetValue(statbonus[3].ToString());
+
+            //wis skills
+            fields["Animal"].SetValue(statbonus[4].ToString());
+            fields["Insight"].SetValue(statbonus[4].ToString());
+            fields["Medicine"].SetValue(statbonus[4].ToString());
+            fields["Perception "].SetValue(statbonus[4].ToString());
+            fields["Survival"].SetValue(statbonus[4].ToString());
+
+            //cha skills
+            fields["Deception "].SetValue(statbonus[5].ToString());
+            fields["Intimidation"].SetValue(statbonus[5].ToString());
+            fields["Performance"].SetValue(statbonus[5].ToString());
+            fields["Persuasion"].SetValue(statbonus[5].ToString());
+        }
     }
 
     class Cleric : spellCaster 
@@ -966,6 +1079,59 @@ namespace M_A_G_I_C_K
             return currentSpells;
         }
 
+        public override void skillFilling(IDictionary<string, PdfFormField> fields, int[] statbonus, int profBonus)
+        {
+            //saving throws prof
+            fields["CheckBoxWis"].SetValue("01", true);
+            fields["CheckBoxCon"].SetValue("01", true);
+
+            //setting variables
+            /*
+             * 
+             * Stats[0] = STR;
+                Stats[1] = DEX
+                Stats[2] = SMRT
+                Stats[3] = CON;
+                Stats[4] = CHA;
+                Stats[5] = WIS;
+             * 
+             */
+
+            fields["ST Strength"].SetValue(statbonus[0].ToString());
+            fields["ST Dexterity"].SetValue(statbonus[1].ToString());
+            fields["ST Constitution"].SetValue((statbonus[2] + profBonus).ToString());
+            fields["ST Intelligence"].SetValue(statbonus[3].ToString());
+            fields["ST Wisdom"].SetValue((statbonus[4] + profBonus).ToString());
+            fields["ST Charisma"].SetValue(statbonus[5].ToString());
+
+            //strength skills
+            fields["Athletics"].SetValue(statbonus[0].ToString());
+
+            //dex skills
+            fields["Acrobatics"].SetValue(statbonus[1].ToString());
+            fields["Stealth "].SetValue(statbonus[1].ToString());
+            fields["SleightofHand"].SetValue(statbonus[1].ToString());
+
+            //int skills
+            fields["Arcana"].SetValue(statbonus[3].ToString());
+            fields["History "].SetValue(statbonus[3].ToString());
+            fields["Investigation "].SetValue(statbonus[3].ToString());
+            fields["Nature"].SetValue(statbonus[3].ToString());
+            fields["Religion"].SetValue(statbonus[3].ToString());
+
+            //wis skills
+            fields["Animal"].SetValue(statbonus[4].ToString());
+            fields["Insight"].SetValue(statbonus[4].ToString());
+            fields["Medicine"].SetValue(statbonus[4].ToString());
+            fields["Perception "].SetValue(statbonus[4].ToString());
+            fields["Survival"].SetValue(statbonus[4].ToString());
+
+            //cha skills
+            fields["Deception "].SetValue(statbonus[5].ToString());
+            fields["Intimidation"].SetValue(statbonus[5].ToString());
+            fields["Performance"].SetValue(statbonus[5].ToString());
+            fields["Persuasion"].SetValue(statbonus[5].ToString());
+        }
     }
 
     class Wizard : spellCaster 
@@ -1015,6 +1181,59 @@ namespace M_A_G_I_C_K
 
             return currentSpells;
         }
+        public override void skillFilling(IDictionary<string, PdfFormField> fields, int[] statbonus, int profBonus)
+        {
+            //saving throws prof
+            fields["CheckBoxWis"].SetValue("01", true);
+            fields["CheckBoxInt"].SetValue("01", true);
+
+            //setting variables
+            /*
+             * 
+             * Stats[0] = STR;
+                Stats[1] = DEX
+                Stats[2] = SMRT
+                Stats[3] = CON;
+                Stats[4] = CHA;
+                Stats[5] = WIS;
+             * 
+             */
+
+            fields["ST Strength"].SetValue((statbonus[0] + profBonus).ToString());
+            fields["ST Dexterity"].SetValue(statbonus[1].ToString());
+            fields["ST Constitution"].SetValue(statbonus[2].ToString());
+            fields["ST Intelligence"].SetValue((statbonus[2] + profBonus).ToString());
+            fields["ST Wisdom"].SetValue(statbonus[4].ToString());
+            fields["ST Charisma"].SetValue(statbonus[5].ToString());
+
+            //strength skills
+            fields["Athletics"].SetValue(statbonus[0].ToString());
+
+            //dex skills
+            fields["Acrobatics"].SetValue(statbonus[1].ToString());
+            fields["Stealth "].SetValue(statbonus[1].ToString());
+            fields["SleightofHand"].SetValue(statbonus[1].ToString());
+
+            //int skills
+            fields["Arcana"].SetValue(statbonus[3].ToString());
+            fields["History "].SetValue(statbonus[3].ToString());
+            fields["Investigation "].SetValue(statbonus[3].ToString());
+            fields["Nature"].SetValue(statbonus[3].ToString());
+            fields["Religion"].SetValue(statbonus[3].ToString());
+
+            //wis skills
+            fields["Animal"].SetValue(statbonus[4].ToString());
+            fields["Insight"].SetValue(statbonus[4].ToString());
+            fields["Medicine"].SetValue(statbonus[4].ToString());
+            fields["Perception "].SetValue(statbonus[4].ToString());
+            fields["Survival"].SetValue(statbonus[4].ToString());
+
+            //cha skills
+            fields["Deception "].SetValue(statbonus[5].ToString());
+            fields["Intimidation"].SetValue(statbonus[5].ToString());
+            fields["Performance"].SetValue(statbonus[5].ToString());
+            fields["Persuasion"].SetValue(statbonus[5].ToString());
+        }
     }
 
     class Rouge : DndClass 
@@ -1026,6 +1245,59 @@ namespace M_A_G_I_C_K
             _CharClassName = "Rouge";
             _hitpointDice = "D8";
             _ProfisBonus = 2;
+        }
+        public override void skillFilling(IDictionary<string, PdfFormField> fields, int[] statbonus, int profBonus)
+        {
+            //saving throws prof
+            fields["CheckBoxInt"].SetValue("01", true);
+            fields["CheckBoxDex"].SetValue("01", true);
+
+            //setting variables
+            /*
+             * 
+             * Stats[0] = STR;
+                Stats[1] = DEX
+                Stats[2] = SMRT
+                Stats[3] = CON;
+                Stats[4] = CHA;
+                Stats[5] = WIS;
+             * 
+             */
+
+            fields["ST Strength"].SetValue(statbonus[0].ToString());
+            fields["ST Dexterity"].SetValue((statbonus[1] + profBonus).ToString());
+            fields["ST Constitution"].SetValue(statbonus[2].ToString());
+            fields["ST Intelligence"].SetValue((statbonus[3] + profBonus).ToString());
+            fields["ST Wisdom"].SetValue(statbonus[4].ToString());
+            fields["ST Charisma"].SetValue(statbonus[5].ToString());
+
+            //strength skills
+            fields["Athletics"].SetValue(statbonus[0].ToString());
+
+            //dex skills
+            fields["Acrobatics"].SetValue(statbonus[1].ToString());
+            fields["Stealth "].SetValue(statbonus[1].ToString());
+            fields["SleightofHand"].SetValue(statbonus[1].ToString());
+
+            //int skills
+            fields["Arcana"].SetValue(statbonus[3].ToString());
+            fields["History "].SetValue(statbonus[3].ToString());
+            fields["Investigation "].SetValue(statbonus[3].ToString());
+            fields["Nature"].SetValue(statbonus[3].ToString());
+            fields["Religion"].SetValue(statbonus[3].ToString());
+
+            //wis skills
+            fields["Animal"].SetValue(statbonus[4].ToString());
+            fields["Insight"].SetValue(statbonus[4].ToString());
+            fields["Medicine"].SetValue(statbonus[4].ToString());
+            fields["Perception "].SetValue(statbonus[4].ToString());
+            fields["Survival"].SetValue(statbonus[4].ToString());
+
+            //cha skills
+            fields["Deception "].SetValue(statbonus[5].ToString());
+            fields["Intimidation"].SetValue(statbonus[5].ToString());
+            fields["Performance"].SetValue(statbonus[5].ToString());
+            fields["Persuasion"].SetValue(statbonus[5].ToString());
         }
     }
 
@@ -1072,6 +1344,60 @@ namespace M_A_G_I_C_K
                 connection.Close();
             }
             return currentSpells;
+        }
+
+        public override void skillFilling(IDictionary<string, PdfFormField> fields, int[] statbonus, int profBonus)
+        {
+            //saving throws prof
+            fields["CheckBoxDex"].SetValue("01", true);
+            fields["CheckBoxCha"].SetValue("01", true);
+
+            //setting variables
+            /*
+             * 
+             * Stats[0] = STR;
+                Stats[1] = DEX
+                Stats[2] = SMRT
+                Stats[3] = CON;
+                Stats[4] = CHA;
+                Stats[5] = WIS;
+             * 
+             */
+
+            fields["ST Strength"].SetValue(statbonus[0].ToString());
+            fields["ST Dexterity"].SetValue((statbonus[1] + profBonus).ToString());
+            fields["ST Constitution"].SetValue(statbonus[2].ToString());
+            fields["ST Intelligence"].SetValue(statbonus[3].ToString());
+            fields["ST Wisdom"].SetValue(statbonus[4].ToString());
+            fields["ST Charisma"].SetValue((statbonus[5] + profBonus).ToString());
+
+            //strength skills
+            fields["Athletics"].SetValue(statbonus[0].ToString());
+
+            //dex skills
+            fields["Acrobatics"].SetValue(statbonus[1].ToString());
+            fields["Stealth "].SetValue(statbonus[1].ToString());
+            fields["SleightofHand"].SetValue(statbonus[1].ToString());
+
+            //int skills
+            fields["Arcana"].SetValue(statbonus[3].ToString());
+            fields["History "].SetValue(statbonus[3].ToString());
+            fields["Investigation "].SetValue(statbonus[3].ToString());
+            fields["Nature"].SetValue(statbonus[3].ToString());
+            fields["Religion"].SetValue(statbonus[3].ToString());
+
+            //wis skills
+            fields["Animal"].SetValue(statbonus[4].ToString());
+            fields["Insight"].SetValue(statbonus[4].ToString());
+            fields["Medicine"].SetValue(statbonus[4].ToString());
+            fields["Perception "].SetValue(statbonus[4].ToString());
+            fields["Survival"].SetValue(statbonus[4].ToString());
+
+            //cha skills
+            fields["Deception "].SetValue(statbonus[5].ToString());
+            fields["Intimidation"].SetValue(statbonus[5].ToString());
+            fields["Performance"].SetValue(statbonus[5].ToString());
+            fields["Persuasion"].SetValue(statbonus[5].ToString());
         }
     }
 
