@@ -558,6 +558,7 @@
             this.backgroundTb1.Location = new System.Drawing.Point(209, 119);
             this.backgroundTb1.Multiline = true;
             this.backgroundTb1.Name = "backgroundTb1";
+            this.backgroundTb1.ReadOnly = true;
             this.backgroundTb1.Size = new System.Drawing.Size(301, 89);
             this.backgroundTb1.TabIndex = 49;
             // 
@@ -732,6 +733,7 @@
             // 
             this.STRtbx.Location = new System.Drawing.Point(641, 56);
             this.STRtbx.Name = "STRtbx";
+            this.STRtbx.ReadOnly = true;
             this.STRtbx.Size = new System.Drawing.Size(174, 38);
             this.STRtbx.TabIndex = 81;
             this.STRtbx.Text = "";
@@ -740,6 +742,7 @@
             // 
             this.DEXtbx.Location = new System.Drawing.Point(641, 117);
             this.DEXtbx.Name = "DEXtbx";
+            this.DEXtbx.ReadOnly = true;
             this.DEXtbx.Size = new System.Drawing.Size(174, 38);
             this.DEXtbx.TabIndex = 82;
             this.DEXtbx.Text = "";
@@ -748,6 +751,7 @@
             // 
             this.CONtbx.Location = new System.Drawing.Point(641, 175);
             this.CONtbx.Name = "CONtbx";
+            this.CONtbx.ReadOnly = true;
             this.CONtbx.Size = new System.Drawing.Size(174, 38);
             this.CONtbx.TabIndex = 83;
             this.CONtbx.Text = "";
@@ -756,6 +760,7 @@
             // 
             this.SMRTtbx.Location = new System.Drawing.Point(641, 240);
             this.SMRTtbx.Name = "SMRTtbx";
+            this.SMRTtbx.ReadOnly = true;
             this.SMRTtbx.Size = new System.Drawing.Size(174, 38);
             this.SMRTtbx.TabIndex = 84;
             this.SMRTtbx.Text = "";
@@ -764,6 +769,7 @@
             // 
             this.WIStbx.Location = new System.Drawing.Point(641, 297);
             this.WIStbx.Name = "WIStbx";
+            this.WIStbx.ReadOnly = true;
             this.WIStbx.Size = new System.Drawing.Size(174, 38);
             this.WIStbx.TabIndex = 85;
             this.WIStbx.Text = "";
@@ -772,6 +778,7 @@
             // 
             this.CHAtbx.Location = new System.Drawing.Point(641, 353);
             this.CHAtbx.Name = "CHAtbx";
+            this.CHAtbx.ReadOnly = true;
             this.CHAtbx.Size = new System.Drawing.Size(174, 38);
             this.CHAtbx.TabIndex = 86;
             this.CHAtbx.Text = "";
