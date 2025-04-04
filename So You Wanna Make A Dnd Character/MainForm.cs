@@ -32,7 +32,9 @@ namespace M_A_G_I_C_K
         //used to hold the racial bonus for the stats
         private int[] _racialBonus = new int[6];
         private int[] _baseStats = new int[6];
-        
+        private int[] _initialStats = new int[6]; // real original values
+
+
 
         public MainForm()
         {
@@ -50,25 +52,15 @@ namespace M_A_G_I_C_K
             cantripLblCount.Visible = false;
             spellbookLblCount.Visible = false;
 
-            //loading the txtbox with values manually as apparently the program doesnt recognize the design values
-            STRstats.Value = 6;
-            DEXStats.Value = 6;
-            CONStats.Value = 6;
-            SMRTStats.Value = 6;
-            WISstats.Value = 6;
-            CHAStats.Value = 6;
-
-            //load the base stats with pre existing values
-            _baseStats[0] = Convert.ToInt32(STRstats.Value);            
-            _baseStats[1] = Convert.ToInt32(DEXStats.Value);            
-            _baseStats[2] = Convert.ToInt32(CONStats.Value);            
-            _baseStats[3] = Convert.ToInt32(SMRTStats.Value);            
-            _baseStats[4] = Convert.ToInt32(WISstats.Value);            
-            _baseStats[5] = Convert.ToInt32(CHAStats.Value);
-             
+            _baseStats[0] = _initialStats[0] = Convert.ToInt32(STRstats.Value);
+            _baseStats[1] = _initialStats[1] = Convert.ToInt32(DEXStats.Value);
+            _baseStats[2] = _initialStats[2] = Convert.ToInt32(CONStats.Value);
+            _baseStats[3] = _initialStats[3] = Convert.ToInt32(SMRTStats.Value);
+            _baseStats[4] = _initialStats[4] = Convert.ToInt32(WISstats.Value);
+            _baseStats[5] = _initialStats[5] = Convert.ToInt32(CHAStats.Value);
         }
 
-        //this will change the spells you can pick etc etc based on what you pick
+        //mostly used for racial stats right now, DO NOT CHANGE ANYTHING, I DONT WANNA HAVE TO FIX IT
         private void RaceDropBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             /*RaceDropDown
@@ -79,27 +71,33 @@ namespace M_A_G_I_C_K
                 DragonBorn
             */
 
-            STRtbx.Clear();
-            DEXtbx.Clear();
-            SMRTtbx.Clear();
-            CHAtbx.Clear();
-            CONtbx.Clear();
-            WIStbx.Clear();
+            //sets initial stats to equal the value before the racial bonus by subtracting the bonus
+            //
+            //I KNOW LOGIC MIGHT SAY THIS SHOULD BE IN THE RESET METHOD. IT WILL NOT WORK IN THE RESET METHOD
+            _initialStats[0] = Convert.ToInt32(STRstats.Value) - _racialBonus[0];
+            _initialStats[1] = Convert.ToInt32(DEXStats.Value) - _racialBonus[1];
+            _initialStats[2] = Convert.ToInt32(CONStats.Value) - _racialBonus[2];
+            _initialStats[3] = Convert.ToInt32(SMRTStats.Value) - _racialBonus[3];
+            _initialStats[4] = Convert.ToInt32(WISstats.Value) - _racialBonus[4];
+            _initialStats[5] = Convert.ToInt32(CHAStats.Value) - _racialBonus[5];
 
-            _racialBonus = new int[6];
+            //runs reset method which clears the bonus txtBoxes
             try
             {
                 resetStats();
-
             }
             catch
             {
                 Console.WriteLine("Nothing to reset");
             }
+            //array changed to hold a new array of values for racial bonuses
+            _racialBonus = new int[6];
 
+            //sets racial bonus based on selected class
             switch (RaceDropBox.SelectedIndex)
             {
                 case 1: // Human
+
                     _racialBonus[0] = 1; // STR
                     _racialBonus[3] = 1; // INT
                     _racialBonus[4] = 1; // WIS
@@ -122,12 +120,15 @@ namespace M_A_G_I_C_K
                 default:
                     break;
             }
+            //updates textboxes to show the racial bonus
             STRtbx.Text = $"+{_racialBonus[0]} Racial Bonus";
             DEXtbx.Text = $"+{_racialBonus[1]} Racial Bonus";
             CONtbx.Text = $"+{_racialBonus[2]} Racial Bonus";
             SMRTtbx.Text = $"+{_racialBonus[3]} Racial Bonus";
             WIStbx.Text = $"+{_racialBonus[4]} Racial Bonus";
             CHAtbx.Text = $"+{_racialBonus[5]} Racial Bonus";
+
+            //this will update the stats to include the racial bonus
             try
             {
                 updateStats();
@@ -138,6 +139,8 @@ namespace M_A_G_I_C_K
                 Console.WriteLine("Nothing to calculate yet."); 
             }
         }
+        
+        //updates the value to equal basestat + racial bonus
         private void updateStats()
         {
             STRstats.Value = _baseStats[0] + _racialBonus[0];
@@ -147,14 +150,23 @@ namespace M_A_G_I_C_K
             WISstats.Value = _baseStats[4] + _racialBonus[4];
             CHAStats.Value = _baseStats[5] + _racialBonus[5];
         }
+
+        //supposed to reset back to the base stats
         private void resetStats()
         {
+            // sets the _baseStats array to equal the initial stats array without altering the initialStats array
+            //done to allow for setting the initial stats to the value of the stats before the racial bonus later
+            _baseStats = (int[])_initialStats; 
+
+            //clears the textboxes to allow for new values
             STRtbx.Clear();
             DEXtbx.Clear();
             SMRTtbx.Clear();
             CHAtbx.Clear();
             CONtbx.Clear();
             WIStbx.Clear();
+
+            //set the value to = the base stats
             STRstats.Value = _baseStats[0];
             DEXStats.Value = _baseStats[1];
             CONStats.Value = _baseStats[2];
@@ -162,6 +174,7 @@ namespace M_A_G_I_C_K
             WISstats.Value = _baseStats[4];
             CHAStats.Value = _baseStats[5];
         }
+
         private void ClassDropBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             EquipmentCheckBox.Items.Clear();
@@ -896,6 +909,8 @@ namespace M_A_G_I_C_K
         //will add value changed for all the stat nums, to update the profis bounus thingy        
         private void STRstats_ValueChanged(object sender, EventArgs e)
         {
+            _baseStats[0] = Convert.ToInt32(STRstats.Value);
+
             switch (STRstats.Value)
             {
                 case 6:
@@ -932,12 +947,13 @@ namespace M_A_G_I_C_K
                     break;
 
             }
-            _baseStats[0] = Convert.ToInt32(STRstats.Value);
-
+ 
         }
 
         private void DEXStats_ValueChanged(object sender, EventArgs e)
         {
+            _baseStats[1] = Convert.ToInt32(DEXStats.Value);
+
             switch (DEXStats.Value)
             {
                 case 6:
@@ -973,12 +989,13 @@ namespace M_A_G_I_C_K
                     DEXbonusTxt.Text = "+5";
                     break;
             }
-            _baseStats[1] = Convert.ToInt32(DEXStats.Value);
-
+ 
         }
 
         private void CONStats_ValueChanged(object sender, EventArgs e)
         {
+            _baseStats[2] = Convert.ToInt32(CONStats.Value);
+
             switch (CONStats.Value)
             {
                 case 6:
@@ -1014,12 +1031,13 @@ namespace M_A_G_I_C_K
                     CONbonusTxt.Text = "+5";
                     break;
             }
-            _baseStats[2] = Convert.ToInt32(CONStats.Value);
-
+ 
         }
 
         private void SMRTStats_ValueChanged(object sender, EventArgs e)
         {
+            _baseStats[3] = Convert.ToInt32(SMRTStats.Value);
+
             switch (SMRTStats.Value)
             {
                 case 6:
@@ -1055,12 +1073,13 @@ namespace M_A_G_I_C_K
                     SMRTbonusTxt.Text = "+5";
                     break;
             }
-            _baseStats[3] = Convert.ToInt32(SMRTStats.Value);
-
+ 
         }
 
         private void WISstats_ValueChanged(object sender, EventArgs e)
         {
+            _baseStats[4] = Convert.ToInt32(WISstats.Value);
+
             switch (WISstats.Value)
             {
                 case 6:
@@ -1096,12 +1115,13 @@ namespace M_A_G_I_C_K
                     WISbonusTxt.Text = "+5";
                     break;
             }
-            _baseStats[4] = Convert.ToInt32(WISstats.Value);
-
+ 
         }
 
         private void CHAStats_ValueChanged(object sender, EventArgs e)
         {
+            _baseStats[5] = Convert.ToInt32(CHAStats.Value);
+
             switch (CHAStats.Value)
             {
                 case 6:
@@ -1137,8 +1157,7 @@ namespace M_A_G_I_C_K
                     CHAbonusTxt.Text = "+5";
                     break;
             }
-            _baseStats[5] = Convert.ToInt32(CHAStats.Value);
-
+ 
 
         }
 
