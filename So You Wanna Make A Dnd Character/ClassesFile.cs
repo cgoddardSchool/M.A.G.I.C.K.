@@ -403,6 +403,11 @@ namespace M_A_G_I_C_K
             fields["Race"].SetValue(_CharRace.CharRace);
             fields["Background"].SetValue(_background); //might need to change later depeneding on how we do that backgrounds
 
+
+            //sepereate the background
+            string[] sepStrings = ["Background:", "Personality:", "Ideal:", "Flaw:", "Bond,"];
+
+
             //side table for values
             fields["STR"].SetValue(_STR.ToString());
             fields["DEX"].SetValue(_DEX.ToString());
@@ -421,18 +426,42 @@ namespace M_A_G_I_C_K
             fields["Passive"].SetValue(_WIS.ToString());
 
             //center thingy
-            fields["AC"].SetValue("");
+            fields["AC"].SetValue(_AC.ToString());
             fields["Speed"].SetValue(_CharRace.Speed);
-            fields["HPMax"].SetValue("");
+            fields["HPMax"].SetValue(_CharClass.Hitpoints.ToString());
             fields["Initiative"].SetValue(_StatBonus[1].ToString());
             fields["HDTotal"].SetValue("");
-            fields["HD"].SetValue("");
+            fields["HD"].SetValue(_CharClass.HitpointDice);
 
             //might need to concat a bunch of shit before inputting it
             string allFeats = "";
             foreach(string thing in _feats)
             {
-                allFeats += thing + ", ";
+                using (var connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    //finally a query
+                    string query = @"
+                         SELECT Description
+                         FROM GeneralFeats
+                         Where Name = '" + thing + "'";
+
+                    using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                    {
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                
+                                allFeats += thing + ": " + reader.GetString(reader.GetOrdinal("Damage")) + ", ";
+
+                            }
+                        }
+                    }
+
+                    connection.Close();
+                }
             }
             fields["Features and Traits"].SetValue(allFeats);
            
@@ -472,7 +501,7 @@ namespace M_A_G_I_C_K
             }
 
             fields["Wpn Name"].SetValue(_weapon);
-            fields["Wpn1 AtkBonus"].SetValue("");
+            fields["Wpn1 AtkBonus"].SetValue(_StatBonus[0].ToString());
             fields["Wpn1 Damage"].SetValue(damage);
 
 
@@ -684,10 +713,7 @@ namespace M_A_G_I_C_K
 
         public void fillingSpellsPdf(IDictionary<String, PdfFormField> fields)
         {
-            //setting these to defaults just to avoid errors from empty, will need to be updated later
-            _spellSaveDC = "Null";
-            _spellAtkBonus = "Null";
-
+            
             //top section
             fields["Spellcasting Class 2"].SetValue(_CharClassName);
             fields["SpellcastingAbility 2"].SetValue(_spellAbility);
