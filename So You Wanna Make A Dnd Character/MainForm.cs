@@ -335,7 +335,7 @@ namespace M_A_G_I_C_K
                             }
 
                             //updating the number of spells that can be selected
-                            spellCaster.SpellAmountAllowed = 4;
+                            spellCaster.SpellAmountAllowed = 6;
                             spellbookLblCount.Text = "( 0 / " + spellCaster.SpellAmountAllowed + " )";
 
                             break;
@@ -441,7 +441,7 @@ namespace M_A_G_I_C_K
                             }
 
                             //updating the number of spells that can be selected
-                            spellCaster.SpellAmountAllowed = 4;
+                            spellCaster.SpellAmountAllowed = 6;
                             spellbookLblCount.Text = "( 0 / " + spellCaster.SpellAmountAllowed + " )";
 
                             break;
@@ -450,7 +450,6 @@ namespace M_A_G_I_C_K
                     break;
                 case 4:
                     //Rogue
-                    EquipmentCheckBox.Items.Add("Items for Rouge");
                     playerIcon.Image = Image.FromFile(linkToImagine + "Rogue.png");
 
                     List<string> rogueWeapons = Rouge.gettingWeapons("martial");
@@ -487,29 +486,6 @@ namespace M_A_G_I_C_K
                     foreach (string trinket in rogueEquipment)
                     {
                         InventoryCheckbox.Items.Add(trinket);
-                    }
-
-
-                    switch (LevelPicker.Value)
-                    {
-                        case 1:
-                            FeatCheckBox.Items.Add("Rouge");
-                            SpellCheckBox.Items.Add("Rouge");
-                            SpellCheckBox.Items.Add("ONE");
-
-                            break;
-                        case 2:
-                            FeatCheckBox.Items.Add("Rouge");
-                            SpellCheckBox.Items.Add("Rouge");
-                            SpellCheckBox.Items.Add("TWO");
-
-                            break;
-                        case 3:
-                            FeatCheckBox.Items.Add("Rouge");
-                            SpellCheckBox.Items.Add("Rouge");
-                            SpellCheckBox.Items.Add("THREE");
-
-                            break;
                     }
 
                     break;
@@ -616,7 +592,7 @@ namespace M_A_G_I_C_K
                             }
 
                             //updating the number of spells that can be selected
-                            spellCaster.SpellAmountAllowed = 4;
+                            spellCaster.SpellAmountAllowed = 6;
                             spellbookLblCount.Text = "( 0 / " + spellCaster.SpellAmountAllowed + " )";
 
                             break;
@@ -641,7 +617,6 @@ namespace M_A_G_I_C_K
         private void LevelPicker_ValueChanged(object sender, EventArgs e)
         {
             //updating this will be more complicated
-            FeatCheckBox.Items.Clear();
             SpellCheckBox.Items.Clear();
 
             /*Class DropDown
@@ -658,28 +633,6 @@ namespace M_A_G_I_C_K
                 case 1:
                     //Fighter
 
-                    //second switch statment for each level
-                    switch (LevelPicker.Value)
-                    {
-                        case 1:
-                            FeatCheckBox.Items.Add("Fighter");
-                            SpellCheckBox.Items.Add("Fighter");
-                            SpellCheckBox.Items.Add("ONE");
-
-                            break;
-                        case 2:
-                            FeatCheckBox.Items.Add("Fighter");
-                            SpellCheckBox.Items.Add("Fighter");
-                            SpellCheckBox.Items.Add("TWO");
-
-                            break;
-                        case 3:
-                            FeatCheckBox.Items.Add("Fighter");
-                            SpellCheckBox.Items.Add("Fighter");
-                            SpellCheckBox.Items.Add("THREE");
-
-                            break;
-                    }
                     break;
                 case 2:
                     //Cleric
@@ -746,7 +699,7 @@ namespace M_A_G_I_C_K
                             }
 
                             //updating the number of spells that can be selected
-                            spellCaster.SpellAmountAllowed = 4;
+                            spellCaster.SpellAmountAllowed = 6;
                             spellbookLblCount.Text = "( 0 / " + spellCaster.SpellAmountAllowed + " )";
 
                             break;
@@ -818,7 +771,7 @@ namespace M_A_G_I_C_K
                             }
 
                             //updating the number of spells that can be selected
-                            spellCaster.SpellAmountAllowed = 4;
+                            spellCaster.SpellAmountAllowed = 6;
                             spellbookLblCount.Text = "( 0 / " + spellCaster.SpellAmountAllowed + " )";
 
                             break;
@@ -828,28 +781,7 @@ namespace M_A_G_I_C_K
 
                 case 4:
                     //Rouge
-                    switch (LevelPicker.Value)
-                    {
-                        case 1:
-                            FeatCheckBox.Items.Add("Rouge");
-                            SpellCheckBox.Items.Add("Rouge");
-                            SpellCheckBox.Items.Add("ONE");
-
-                            break;
-                        case 2:
-                            FeatCheckBox.Items.Add("Rouge");
-                            SpellCheckBox.Items.Add("Rouge");
-                            SpellCheckBox.Items.Add("TWO");
-
-                            break;
-                        case 3:
-                            FeatCheckBox.Items.Add("Rouge");
-                            SpellCheckBox.Items.Add("Rouge");
-                            SpellCheckBox.Items.Add("THREE");
-
-                            break;
-                    }
-
+                    
                     break;
 
                 case 5:
@@ -917,7 +849,7 @@ namespace M_A_G_I_C_K
                             }
 
                             //updating the number of spells that can be selected
-                            spellCaster.SpellAmountAllowed = 4;
+                            spellCaster.SpellAmountAllowed = 6;
                             spellbookLblCount.Text = "( 0 / " + spellCaster.SpellAmountAllowed + " )";
 
                             break;
