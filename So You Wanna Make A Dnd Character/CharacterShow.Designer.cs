@@ -44,15 +44,16 @@
             // 
             // CreatePdfBtn
             // 
-            this.CreatePdfBtn.Location = new System.Drawing.Point(15, 391);
+            this.CreatePdfBtn.Location = new System.Drawing.Point(32, 46);
             this.CreatePdfBtn.Name = "CreatePdfBtn";
             this.CreatePdfBtn.Size = new System.Drawing.Size(95, 23);
             this.CreatePdfBtn.TabIndex = 1;
             this.CreatePdfBtn.Text = "Create Pdf";
-            this.CreatePdfBtn.UseVisualStyleBackColor = true;            // 
+            this.CreatePdfBtn.UseVisualStyleBackColor = true;
+            // 
             // MainFormBtn
             // 
-            this.MainFormBtn.Location = new System.Drawing.Point(286, 390);
+            this.MainFormBtn.Location = new System.Drawing.Point(163, 46);
             this.MainFormBtn.Name = "MainFormBtn";
             this.MainFormBtn.Size = new System.Drawing.Size(190, 23);
             this.MainFormBtn.TabIndex = 2;
@@ -64,7 +65,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(379, 106);
             this.Controls.Add(this.MainFormBtn);
             this.Controls.Add(this.CreatePdfBtn);
             this.Controls.Add(this.ToBeDeletedLabel);
