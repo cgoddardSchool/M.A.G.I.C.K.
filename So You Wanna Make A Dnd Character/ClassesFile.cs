@@ -50,7 +50,7 @@ namespace M_A_G_I_C_K
         private string[] _feats;
         private int _AC;
         private int ProfisBonus => _ProfisBonus;
-        protected static string connectionString = @"Data Source=" + Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName) + @"\Databases\Primary Database.db";
+        protected static string connectionString = @"Data Source=" + AppDomain.CurrentDomain.BaseDirectory + @"Databases\Primary Database.db";
 
 
 
@@ -363,7 +363,7 @@ namespace M_A_G_I_C_K
             // 
             //proficiency bonus  =  charlevel /4 rounded up +1
 
-            using (var conn = new SQLiteConnection(connectionString))
+            using (var conn = new SQLiteConnection(connectionString, true))
             {
                 conn.Open();
                 string query = $"SELECT ArmorClass, ArmorType FROM Armors WHERE Name = '{_armor}'";
@@ -453,14 +453,14 @@ namespace M_A_G_I_C_K
              */
 
             //this if for finding the current path
-            string pathToPDFFolder = Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName) + @"\PDFS\";
+            string pathToPDFFolder = AppDomain.CurrentDomain.BaseDirectory + @"\PDFS\";
 
             string CreationPath = pathToPDFFolder + _name + "CharacterSheet.pdf";
 
             string basePath = pathToPDFFolder + "DnD_BaseSheet.pdf";
 
             //sql
-            string connectionString = @"Data Source=" + Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName) + @"\Databases\Primary Database.db";
+            string connectionString = @"Data Source=" + AppDomain.CurrentDomain.BaseDirectory + @"\Databases\Primary Database.db";
 
             //creating a file at this location
             using (FileStream fs = File.Create(CreationPath));
@@ -548,7 +548,7 @@ namespace M_A_G_I_C_K
             string allFeats = "";
             foreach(string thing in _feats)
             {
-                using (var connection = new SQLiteConnection(connectionString))
+                using (var connection = new SQLiteConnection(connectionString, true))
                 {
                     connection.Open();
 
@@ -587,7 +587,7 @@ namespace M_A_G_I_C_K
 
             //weapon, sql query for that
             string damage = null;
-            using (var connection = new SQLiteConnection(connectionString))
+            using (var connection = new SQLiteConnection(connectionString, true))
             {
                 connection.Open();
 
@@ -649,7 +649,7 @@ namespace M_A_G_I_C_K
         //this will be inhearented by all the classes
         protected int _Level, _hitpoints, _ProfisBonus;
         protected string _CharClassName, _hitpointDice;
-        protected static string connectionString = @"Data Source=" + Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName) + @"\Databases\Primary Database.db";
+        protected static string connectionString = @"Data Source=" + AppDomain.CurrentDomain.BaseDirectory + @"\Databases\Primary Database.db";
 
         public string CharClassName
         {
@@ -674,7 +674,7 @@ namespace M_A_G_I_C_K
             List<string> currentWeapon = new List<string>();
             string weaponQuery = "";
 
-            using (var conn = new SQLiteConnection(connectionString))
+            using (var conn = new SQLiteConnection(connectionString, true))
             {
                 if (WeaponType == "simple")
                 {
@@ -709,7 +709,7 @@ namespace M_A_G_I_C_K
         {
             List<string> currentFeats = new List<string>();
 
-            using (var conn = new SQLiteConnection(connectionString))
+            using (var conn = new SQLiteConnection(connectionString, true))
             {
                 conn.Open();
 
@@ -738,7 +738,7 @@ namespace M_A_G_I_C_K
             string armourQuery = "";
 
 
-            using (var conn = new SQLiteConnection(connectionString))
+            using (var conn = new SQLiteConnection(connectionString, true))
             {
                 if (ArmorType == "light")
                 {
@@ -774,7 +774,7 @@ namespace M_A_G_I_C_K
         {
             List<string> currentEquipment = new List<string>();
 
-            using (var conn = new SQLiteConnection(connectionString))
+            using (var conn = new SQLiteConnection(connectionString, true))
             {
                 conn.Open();
 
@@ -873,7 +873,7 @@ namespace M_A_G_I_C_K
             {
                 int level = 1;
 
-                using (var connection = new SQLiteConnection(connectionString))
+                using (var connection = new SQLiteConnection(connectionString, true))
                 {
                     connection.Open();
 
@@ -1007,7 +1007,7 @@ namespace M_A_G_I_C_K
         {
             List<string> currentSpells = new List<string>();
 
-            using (var connection = new SQLiteConnection(connectionString))
+            using (var connection = new SQLiteConnection(connectionString, true))
             {
                 connection.Open();
 
@@ -1109,7 +1109,7 @@ namespace M_A_G_I_C_K
         {
             List<string> currentSpells = new List<string>();
 
-            using (var connection = new SQLiteConnection(connectionString))
+            using (var connection = new SQLiteConnection(connectionString, true))
             {
                 connection.Open();
 
@@ -1274,7 +1274,7 @@ namespace M_A_G_I_C_K
         {
             List<string> currentSpells = new List<string>();
 
-            using (var connection = new SQLiteConnection(connectionString))
+            using (var connection = new SQLiteConnection(connectionString, true))
             {
                 connection.Open();
 

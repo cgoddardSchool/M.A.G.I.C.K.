@@ -1338,7 +1338,7 @@ namespace M_A_G_I_C_K
         private void RanNameBtn_Click(object sender, EventArgs e)
         {
             //connection string to pull names from database
-            string connectionString = @"Data Source=" + Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName) + @"\Databases\Primary Database.db";
+            string connectionString = @"Data Source=" + AppDomain.CurrentDomain.BaseDirectory + @"Databases\Primary Database.db";
 
             List<string> firstNameList = new List<string>();
             List<string> secondNameList = new List<string>();
@@ -1355,7 +1355,7 @@ namespace M_A_G_I_C_K
             string fnameQuery = $"SELECT name FROM Names WHERE nameType = 'fname' AND race = '{currentRace}'";
             string lnameQuery = $"SELECT name FROM Names WHERE nameType = 'lname' AND race = '{currentRace}'";
 
-            using (var conn = new SQLiteConnection(connectionString))
+            using (var conn = new SQLiteConnection(connectionString, true))
             {
                 conn.Open();
 
@@ -1416,7 +1416,7 @@ namespace M_A_G_I_C_K
         //selects a random trait from the list passed in
         private string BackgroundFetcher(string BackgroundType)
         {
-            string connectionString = @"Data Source=" + Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName) + @"\Databases\Primary Database.db";
+            string connectionString = @"Data Source=" + AppDomain.CurrentDomain.BaseDirectory + @"Databases\Primary Database.db";
 
             List<string> bgTraitList= new List<string>();
             Random rng = new Random();
@@ -1425,7 +1425,7 @@ namespace M_A_G_I_C_K
 
             string traitQuery = $"SELECT Name FROM '{BackgroundType}'";
  
-            using (var conn = new SQLiteConnection(connectionString))
+            using (var conn = new SQLiteConnection(connectionString, true))
             {
                 conn.Open();
 
