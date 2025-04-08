@@ -789,9 +789,9 @@
             this.featLbl.AutoSize = true;
             this.featLbl.Location = new System.Drawing.Point(465, 440);
             this.featLbl.Name = "featLbl";
-            this.featLbl.Size = new System.Drawing.Size(44, 16);
+            this.featLbl.Size = new System.Drawing.Size(45, 16);
             this.featLbl.TabIndex = 87;
-            this.featLbl.Text = "( 0 , 3 )";
+            this.featLbl.Text = "( 0 / 3 )";
             // 
             // MainForm
             // 

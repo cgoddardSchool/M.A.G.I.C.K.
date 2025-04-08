@@ -88,7 +88,7 @@ namespace M_A_G_I_C_K
             }
             catch
             {
-                Console.WriteLine("Nothing to reset");
+                
             }
             //array changed to hold a new array of values for racial bonuses
             _racialBonus = new int[6];
@@ -136,7 +136,6 @@ namespace M_A_G_I_C_K
             }
             catch 
             { 
-                Console.WriteLine("Nothing to calculate yet."); 
             }
         }
         
