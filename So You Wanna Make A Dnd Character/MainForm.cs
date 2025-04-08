@@ -8,6 +8,7 @@ using System.Data.SQLite;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Routing;
@@ -182,8 +183,11 @@ namespace M_A_G_I_C_K
             CantripList.Items.Clear();
             ArmCheckbox.Items.Clear();
 
-            string linkToImagine = Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName) + @"\Resources\";
-
+            //this works for normal 
+            //string linkToImagine = Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName) + @"\Resources\";
+            //this works for release
+            string linkToImagine = AppDomain.CurrentDomain.BaseDirectory + @"Resources\";
+            Console.WriteLine(linkToImagine);
 
             /*Class DropDown
                 Fighter
@@ -193,7 +197,7 @@ namespace M_A_G_I_C_K
                 Bard
             */
 
- 
+
 
 
             //these will all be updates to a linq statments to filter by class then level, and then a loop to create all the items.add for each thing
