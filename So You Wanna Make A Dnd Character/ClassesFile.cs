@@ -50,7 +50,7 @@ namespace M_A_G_I_C_K
         private string[] _feats;
         private int _AC;
         private int ProfisBonus => _ProfisBonus;
-        protected static string connectionString = @"Data Source=" + Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName) + @"\Databases\Primary Database.db";
+        protected static string connectionString = @"Data Source=" + AppDomain.CurrentDomain.BaseDirectory + @"Databases\Primary Database.db";
 
 
 
@@ -78,35 +78,28 @@ namespace M_A_G_I_C_K
             switch (SelectedRace)
             {
                 case 1:
-                    Console.WriteLine("Selected Human");
-
                     _CharRace = new Human();
  
                     break;
                 case 2:
-                    Console.WriteLine("Selected Elf");
                     _CharRace = new Elf();
 
                     break;
                 case 3:
-                    Console.WriteLine("Selected Dwarf");
                     _CharRace = new Dwarf();
 
 
                     break;
                 case 4:
-                    Console.WriteLine("Selected Orc");
                     _CharRace = new Orc();
 
                     break;
                 case 5:
-                    Console.WriteLine("Selected Dragonborn");
                     _CharRace = new Dragonborn();
 
                     break;
 
                 default:
-                    Console.WriteLine("Selected Nothing");
                     //begin randomly generated stuff
 
 
@@ -117,17 +110,14 @@ namespace M_A_G_I_C_K
             switch (SelectedClass)
             {
                 case 1:
-                    Console.WriteLine("Selected Fighter");
                     _CharClass = new Fighter(Level);
 
                     break;
                 case 4:
-                    Console.WriteLine("Selected Rouge");
                     _CharClass = new Rouge(Level);
 
                     break;
                 default:
-                    Console.WriteLine("Selected Nothing");
                     //start random generation here
 
 
@@ -142,15 +132,13 @@ namespace M_A_G_I_C_K
             //if the name is not just a space (if blank)
             if (Name != " ")
             {
-                Console.WriteLine("Putting Name Info");
 
                 _name = Name;
             }else
             {
-                Console.WriteLine("Generating Name");
                 //run the ran generator
 
-                _name = "TestingPDF";
+                _name = "NoName";
             }
 
             //adding all inventory stuff
@@ -161,16 +149,14 @@ namespace M_A_G_I_C_K
             }
             catch
             {
-                Console.WriteLine("No weapon selected, travelling unarmed!");
             }
             try
             {
 
-                _weapon = inventory[0];
+                _armor = inventory[1];
             }
             catch
             {
-                Console.WriteLine("No armor selected, travelling unarmored!");
             }
 
             foreach (string item in inventory)
@@ -206,21 +192,7 @@ namespace M_A_G_I_C_K
             calculatingStats();
 
 
-            //testing lines
-            Console.WriteLine("-----------------");
-            Console.WriteLine("");
-            Console.WriteLine("AC: " + _AC);
-            Console.WriteLine("HP: " + _CharClass.Hitpoints);
-            Console.WriteLine("CON " + _StatBonus[2]);
-            Console.WriteLine("Dex " + _StatBonus[1]);
-            if (_SpellCaster != null)
-            {
-
-                Console.WriteLine("Spellcasting Modifier (Save): " + _SpellCaster.spellSaveDC);
-                Console.WriteLine("Spellcasting Modifier (Attack Bonus): " + _SpellCaster.SpellAtkBonus);
-            }
-            Console.WriteLine("");
-            Console.WriteLine("-----------------");
+           
 
 
 
@@ -247,35 +219,28 @@ namespace M_A_G_I_C_K
             switch (SelectedRace)
             {
                 case 1:
-                    Console.WriteLine("Selected Human");
-
                     _CharRace = new Human();
 
                     break;
                 case 2:
-                    Console.WriteLine("Selected Elf");
                     _CharRace = new Elf();
 
                     break;
                 case 3:
-                    Console.WriteLine("Selected Dwarf");
                     _CharRace = new Dwarf();
 
 
                     break;
                 case 4:
-                    Console.WriteLine("Selected Orc");
                     _CharRace = new Orc();
 
                     break;
                 case 5:
-                    Console.WriteLine("Selected Dragonborn");
                     _CharRace = new Dragonborn();
 
                     break;
 
                 default:
-                    Console.WriteLine("Selected Nothing");
                     //begin randomly generated stuff
 
 
@@ -286,25 +251,21 @@ namespace M_A_G_I_C_K
             switch (SelectedClass)
             {
                 case 2:
-                    Console.WriteLine("selected cleric");
                     _SpellCaster = new Cleric(Level, Cantrips, Spells);
                     _CharClass = new Cleric(Level, Cantrips, Spells);
 
                     break;
                 case 3:
-                    Console.WriteLine("Selected Wizard");
                     _SpellCaster = new Wizard(Level, Cantrips, Spells);
                     _CharClass = new Wizard(Level, Cantrips, Spells);
 
                     break;
                 case 5:
-                    Console.WriteLine("Selected Bard");
                     _SpellCaster = new Bard(Level, Cantrips, Spells);
                     _CharClass = new Bard(Level, Cantrips, Spells);
 
                     break;
                 default:
-                    Console.WriteLine("Selected Nothing");
                     //start random generation here
                     break;
             }
@@ -317,16 +278,14 @@ namespace M_A_G_I_C_K
             //if the name is not just a space (if blank)
             if (Name != " ")
             {
-                Console.WriteLine("Putting Name Info");
 
                 _name = Name;
             }
             else
             {
-                Console.WriteLine("Generating Name");
                 //run the ran generator
 
-                _name = "TestingPDF";
+                _name = "NoName";
             }
 
             //adding all inventory stuff
@@ -338,16 +297,14 @@ namespace M_A_G_I_C_K
             }
             catch
             {
-                Console.WriteLine("No weapon selected, travelling unarmed!");
             }
             try
             {
 
-                _weapon = inventory[0];
+                _armor = inventory[1];
             }
             catch
             {
-                Console.WriteLine("No armor selected, travelling unarmored!");
             }
 
             foreach (string item in inventory)
@@ -406,7 +363,7 @@ namespace M_A_G_I_C_K
             // 
             //proficiency bonus  =  charlevel /4 rounded up +1
 
-            using (var conn = new SQLiteConnection(connectionString))
+            using (var conn = new SQLiteConnection(connectionString, true))
             {
                 conn.Open();
                 string query = $"SELECT ArmorClass, ArmorType FROM Armors WHERE Name = '{_armor}'";
@@ -483,7 +440,6 @@ namespace M_A_G_I_C_K
         }
         public void creatingPdf()
         {
-            Console.WriteLine("getting into pdf editing");
 
 
             /*flow of pdf creation
@@ -497,17 +453,18 @@ namespace M_A_G_I_C_K
              */
 
             //this if for finding the current path
-            string pathToPDFFolder = Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName) + @"\PDFS\";
+            string pathToPDFFolder = AppDomain.CurrentDomain.BaseDirectory + @"\PDFS\";
 
             string CreationPath = pathToPDFFolder + _name + "CharacterSheet.pdf";
 
             string basePath = pathToPDFFolder + "DnD_BaseSheet.pdf";
 
             //sql
-            string connectionString = @"Data Source=" + Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName) + @"\Databases\Primary Database.db";
+            string connectionString = @"Data Source=" + AppDomain.CurrentDomain.BaseDirectory + @"\Databases\Primary Database.db";
 
             //creating a file at this location
-            using (FileStream fs = File.Create(CreationPath));
+            using (FileStream fs = File.Create(CreationPath)) fs.Close();
+            
             
             //setting up the pdf to merge to
             PdfDocument CharPdf = new PdfDocument(new PdfWriter(CreationPath));
@@ -592,7 +549,7 @@ namespace M_A_G_I_C_K
             string allFeats = "";
             foreach(string thing in _feats)
             {
-                using (var connection = new SQLiteConnection(connectionString))
+                using (var connection = new SQLiteConnection(connectionString, true))
                 {
                     connection.Open();
 
@@ -631,7 +588,7 @@ namespace M_A_G_I_C_K
 
             //weapon, sql query for that
             string damage = null;
-            using (var connection = new SQLiteConnection(connectionString))
+            using (var connection = new SQLiteConnection(connectionString, true))
             {
                 connection.Open();
 
@@ -661,6 +618,7 @@ namespace M_A_G_I_C_K
 
             _CharClass.skillFilling(fields, _StatBonus, _ProfisBonus);
 
+           
             fillingPdf.Close();
 
             //finally asking via pop up if you would like to move the file to your desktop
@@ -674,7 +632,12 @@ namespace M_A_G_I_C_K
             if (result == DialogResult.Yes)
             {
 
-                string movementPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + _name + "CharacterSheet.pdf";
+                
+                string movementPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + @"\" + _name + "CharacterSheet.pdf";
+
+                FileInfo mainFile = new FileInfo(CreationPath);
+
+                mainFile.MoveTo(movementPath);
 
                 //moving the stuff to desktop
                 //File.Move(CreationPath, movementPath);
@@ -693,7 +656,7 @@ namespace M_A_G_I_C_K
         //this will be inhearented by all the classes
         protected int _Level, _hitpoints, _ProfisBonus;
         protected string _CharClassName, _hitpointDice;
-        protected static string connectionString = @"Data Source=" + Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName) + @"\Databases\Primary Database.db";
+        protected static string connectionString = @"Data Source=" + AppDomain.CurrentDomain.BaseDirectory + @"\Databases\Primary Database.db";
 
         public string CharClassName
         {
@@ -718,7 +681,7 @@ namespace M_A_G_I_C_K
             List<string> currentWeapon = new List<string>();
             string weaponQuery = "";
 
-            using (var conn = new SQLiteConnection(connectionString))
+            using (var conn = new SQLiteConnection(connectionString, true))
             {
                 if (WeaponType == "simple")
                 {
@@ -753,7 +716,7 @@ namespace M_A_G_I_C_K
         {
             List<string> currentFeats = new List<string>();
 
-            using (var conn = new SQLiteConnection(connectionString))
+            using (var conn = new SQLiteConnection(connectionString, true))
             {
                 conn.Open();
 
@@ -782,7 +745,7 @@ namespace M_A_G_I_C_K
             string armourQuery = "";
 
 
-            using (var conn = new SQLiteConnection(connectionString))
+            using (var conn = new SQLiteConnection(connectionString, true))
             {
                 if (ArmorType == "light")
                 {
@@ -818,7 +781,7 @@ namespace M_A_G_I_C_K
         {
             List<string> currentEquipment = new List<string>();
 
-            using (var conn = new SQLiteConnection(connectionString))
+            using (var conn = new SQLiteConnection(connectionString, true))
             {
                 conn.Open();
 
@@ -917,7 +880,7 @@ namespace M_A_G_I_C_K
             {
                 int level = 1;
 
-                using (var connection = new SQLiteConnection(connectionString))
+                using (var connection = new SQLiteConnection(connectionString, true))
                 {
                     connection.Open();
 
@@ -1051,7 +1014,7 @@ namespace M_A_G_I_C_K
         {
             List<string> currentSpells = new List<string>();
 
-            using (var connection = new SQLiteConnection(connectionString))
+            using (var connection = new SQLiteConnection(connectionString, true))
             {
                 connection.Open();
 
@@ -1153,7 +1116,7 @@ namespace M_A_G_I_C_K
         {
             List<string> currentSpells = new List<string>();
 
-            using (var connection = new SQLiteConnection(connectionString))
+            using (var connection = new SQLiteConnection(connectionString, true))
             {
                 connection.Open();
 
@@ -1318,7 +1281,7 @@ namespace M_A_G_I_C_K
         {
             List<string> currentSpells = new List<string>();
 
-            using (var connection = new SQLiteConnection(connectionString))
+            using (var connection = new SQLiteConnection(connectionString, true))
             {
                 connection.Open();
 
