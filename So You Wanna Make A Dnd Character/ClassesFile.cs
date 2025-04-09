@@ -463,7 +463,8 @@ namespace M_A_G_I_C_K
             string connectionString = @"Data Source=" + AppDomain.CurrentDomain.BaseDirectory + @"\Databases\Primary Database.db";
 
             //creating a file at this location
-            using (FileStream fs = File.Create(CreationPath));
+            using (FileStream fs = File.Create(CreationPath)) fs.Close();
+            
             
             //setting up the pdf to merge to
             PdfDocument CharPdf = new PdfDocument(new PdfWriter(CreationPath));
@@ -617,6 +618,7 @@ namespace M_A_G_I_C_K
 
             _CharClass.skillFilling(fields, _StatBonus, _ProfisBonus);
 
+           
             fillingPdf.Close();
 
             //finally asking via pop up if you would like to move the file to your desktop
@@ -630,7 +632,12 @@ namespace M_A_G_I_C_K
             if (result == DialogResult.Yes)
             {
 
-                string movementPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + _name + "CharacterSheet.pdf";
+                
+                string movementPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + @"\" + _name + "CharacterSheet.pdf";
+
+                FileInfo mainFile = new FileInfo(CreationPath);
+
+                mainFile.MoveTo(movementPath);
 
                 //moving the stuff to desktop
                 //File.Move(CreationPath, movementPath);
