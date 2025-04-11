@@ -51,6 +51,8 @@ namespace M_A_G_I_C_K
         private int _AC;
         private int ProfisBonus => _ProfisBonus;
         protected static string connectionString = @"Data Source=" + AppDomain.CurrentDomain.BaseDirectory + @"Databases\Primary Database.db";
+        //if you are tryinig to test without deployment replace AppDomain.CurrentDomain.BaseDirectory with Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.FullName)
+        //there are multiple locations with there, best to use find and replace.. but make sure to undo before pushing back to master
 
 
 
