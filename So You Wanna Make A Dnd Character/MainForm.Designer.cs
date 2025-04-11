@@ -74,7 +74,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.InventoryCheckbox = new System.Windows.Forms.CheckedListBox();
             this.CantripList = new System.Windows.Forms.CheckedListBox();
-            this.ProgressBarBtn = new System.Windows.Forms.Button();
             this.cantripsLbl = new System.Windows.Forms.Label();
             this.cantripLblCount = new System.Windows.Forms.Label();
             this.spellbookLblCount = new System.Windows.Forms.Label();
@@ -559,6 +558,7 @@
             this.backgroundTb1.Location = new System.Drawing.Point(209, 119);
             this.backgroundTb1.Multiline = true;
             this.backgroundTb1.Name = "backgroundTb1";
+            this.backgroundTb1.ReadOnly = true;
             this.backgroundTb1.Size = new System.Drawing.Size(301, 89);
             this.backgroundTb1.TabIndex = 49;
             // 
@@ -665,15 +665,6 @@
             this.CantripList.TabIndex = 72;
             this.CantripList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.CantripList_ItemCheck);
             // 
-            // ProgressBarBtn
-            // 
-            this.ProgressBarBtn.Location = new System.Drawing.Point(532, 599);
-            this.ProgressBarBtn.Name = "ProgressBarBtn";
-            this.ProgressBarBtn.Size = new System.Drawing.Size(281, 26);
-            this.ProgressBarBtn.TabIndex = 73;
-            this.ProgressBarBtn.Text = "PROGRESS BAR SIZING";
-            this.ProgressBarBtn.UseVisualStyleBackColor = true;
-            // 
             // cantripsLbl
             // 
             this.cantripsLbl.AutoSize = true;
@@ -733,6 +724,7 @@
             // 
             this.STRtbx.Location = new System.Drawing.Point(641, 56);
             this.STRtbx.Name = "STRtbx";
+            this.STRtbx.ReadOnly = true;
             this.STRtbx.Size = new System.Drawing.Size(174, 38);
             this.STRtbx.TabIndex = 81;
             this.STRtbx.Text = "";
@@ -741,6 +733,7 @@
             // 
             this.DEXtbx.Location = new System.Drawing.Point(641, 117);
             this.DEXtbx.Name = "DEXtbx";
+            this.DEXtbx.ReadOnly = true;
             this.DEXtbx.Size = new System.Drawing.Size(174, 38);
             this.DEXtbx.TabIndex = 82;
             this.DEXtbx.Text = "";
@@ -749,6 +742,7 @@
             // 
             this.CONtbx.Location = new System.Drawing.Point(641, 175);
             this.CONtbx.Name = "CONtbx";
+            this.CONtbx.ReadOnly = true;
             this.CONtbx.Size = new System.Drawing.Size(174, 38);
             this.CONtbx.TabIndex = 83;
             this.CONtbx.Text = "";
@@ -757,6 +751,7 @@
             // 
             this.SMRTtbx.Location = new System.Drawing.Point(641, 240);
             this.SMRTtbx.Name = "SMRTtbx";
+            this.SMRTtbx.ReadOnly = true;
             this.SMRTtbx.Size = new System.Drawing.Size(174, 38);
             this.SMRTtbx.TabIndex = 84;
             this.SMRTtbx.Text = "";
@@ -765,6 +760,7 @@
             // 
             this.WIStbx.Location = new System.Drawing.Point(641, 297);
             this.WIStbx.Name = "WIStbx";
+            this.WIStbx.ReadOnly = true;
             this.WIStbx.Size = new System.Drawing.Size(174, 38);
             this.WIStbx.TabIndex = 85;
             this.WIStbx.Text = "";
@@ -773,6 +769,7 @@
             // 
             this.CHAtbx.Location = new System.Drawing.Point(641, 353);
             this.CHAtbx.Name = "CHAtbx";
+            this.CHAtbx.ReadOnly = true;
             this.CHAtbx.Size = new System.Drawing.Size(174, 38);
             this.CHAtbx.TabIndex = 86;
             this.CHAtbx.Text = "";
@@ -782,9 +779,9 @@
             this.featLbl.AutoSize = true;
             this.featLbl.Location = new System.Drawing.Point(465, 440);
             this.featLbl.Name = "featLbl";
-            this.featLbl.Size = new System.Drawing.Size(44, 16);
+            this.featLbl.Size = new System.Drawing.Size(45, 16);
             this.featLbl.TabIndex = 87;
-            this.featLbl.Text = "( 0 , 3 )";
+            this.featLbl.Text = "( 0 / 3 )";
             // 
             // MainForm
             // 
@@ -804,7 +801,6 @@
             this.Controls.Add(this.spellbookLblCount);
             this.Controls.Add(this.cantripLblCount);
             this.Controls.Add(this.cantripsLbl);
-            this.Controls.Add(this.ProgressBarBtn);
             this.Controls.Add(this.CantripList);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.InventoryCheckbox);
@@ -917,7 +913,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckedListBox InventoryCheckbox;
         private System.Windows.Forms.CheckedListBox CantripList;
-        private System.Windows.Forms.Button ProgressBarBtn;
         private System.Windows.Forms.Label cantripsLbl;
         private System.Windows.Forms.Label cantripLblCount;
         private System.Windows.Forms.Label spellbookLblCount;
