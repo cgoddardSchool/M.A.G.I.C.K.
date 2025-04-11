@@ -21,8 +21,6 @@ using System.Data.SQLite;
 using static iText.Signatures.LtvVerification;
 using iText.Layout.Element;
 
-//THIS FILE HAS CONSOLE.WRITELINES THAT NEED TO BE REMOVED BEFORE HANDING IN
-
 
 namespace M_A_G_I_C_K
 {
@@ -204,25 +202,6 @@ namespace M_A_G_I_C_K
 
             //CALCULATING STATS GOES HERE
             calculatingStats();
-
-
-            //testing lines
-            Console.WriteLine("-----------------");
-            Console.WriteLine("");
-            Console.WriteLine("AC: " + _AC);
-            Console.WriteLine("HP: " + _CharClass.Hitpoints);
-            Console.WriteLine("CON " + _StatBonus[2]);
-            Console.WriteLine("Dex " + _StatBonus[1]);
-            if (_SpellCaster != null)
-            {
-
-                Console.WriteLine("Spellcasting Modifier (Save): " + _SpellCaster.spellSaveDC);
-                Console.WriteLine("Spellcasting Modifier (Attack Bonus): " + _SpellCaster.SpellAtkBonus);
-            }
-            Console.WriteLine("");
-            Console.WriteLine("-----------------");
-
-
 
         }
 
@@ -560,8 +539,11 @@ namespace M_A_G_I_C_K
             fields["Background"].SetValue(sepBackground[0]);
             fields["PersonalityTraits "].SetValue(sepBackground[1]);
             fields["Ideals"].SetValue(sepBackground[2]);
-            fields["Bonds"].SetValue(sepBackground[3]);
-            fields["Flaws"].SetValue(sepBackground[4]);
+            fields["Bonds"].SetValue(sepBackground[4]);
+            fields["Flaws"].SetValue(sepBackground[3]);
+
+            Console.WriteLine(sepBackground[4]);
+            Console.WriteLine(sepBackground[3]);
 
 
             //side table for values

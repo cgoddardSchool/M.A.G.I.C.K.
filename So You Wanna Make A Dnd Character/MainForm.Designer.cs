@@ -74,7 +74,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.InventoryCheckbox = new System.Windows.Forms.CheckedListBox();
             this.CantripList = new System.Windows.Forms.CheckedListBox();
-            this.ProgressBarBtn = new System.Windows.Forms.Button();
             this.cantripsLbl = new System.Windows.Forms.Label();
             this.cantripLblCount = new System.Windows.Forms.Label();
             this.spellbookLblCount = new System.Windows.Forms.Label();
@@ -665,15 +664,6 @@
             this.CantripList.TabIndex = 72;
             this.CantripList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.CantripList_ItemCheck);
             // 
-            // ProgressBarBtn
-            // 
-            this.ProgressBarBtn.Location = new System.Drawing.Point(532, 599);
-            this.ProgressBarBtn.Name = "ProgressBarBtn";
-            this.ProgressBarBtn.Size = new System.Drawing.Size(281, 26);
-            this.ProgressBarBtn.TabIndex = 73;
-            this.ProgressBarBtn.Text = "PROGRESS BAR SIZING";
-            this.ProgressBarBtn.UseVisualStyleBackColor = true;
-            // 
             // cantripsLbl
             // 
             this.cantripsLbl.AutoSize = true;
@@ -804,7 +794,6 @@
             this.Controls.Add(this.spellbookLblCount);
             this.Controls.Add(this.cantripLblCount);
             this.Controls.Add(this.cantripsLbl);
-            this.Controls.Add(this.ProgressBarBtn);
             this.Controls.Add(this.CantripList);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.InventoryCheckbox);
@@ -917,7 +906,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckedListBox InventoryCheckbox;
         private System.Windows.Forms.CheckedListBox CantripList;
-        private System.Windows.Forms.Button ProgressBarBtn;
         private System.Windows.Forms.Label cantripsLbl;
         private System.Windows.Forms.Label cantripLblCount;
         private System.Windows.Forms.Label spellbookLblCount;

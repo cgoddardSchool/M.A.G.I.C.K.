@@ -640,6 +640,7 @@ namespace M_A_G_I_C_K
                     List<string> ClericCantrip = Cleric.gettingSpells(0);
                     List<string> ClericLevelOne = Cleric.gettingSpells(1);
                     List<string> ClericLevelTwo = Cleric.gettingSpells(2);
+                    CantripList.Items.Clear();
 
                     switch (LevelPicker.Value)
                     {
@@ -712,6 +713,8 @@ namespace M_A_G_I_C_K
                     List<string> WizCantrip = Wizard.gettingSpells(0);
                     List<string> WizLevelOne = Wizard.gettingSpells(1);
                     List<string> WizLevelTwo = Wizard.gettingSpells(2);
+                    CantripList.Items.Clear();
+
 
                     switch (LevelPicker.Value)
                     {
@@ -789,6 +792,7 @@ namespace M_A_G_I_C_K
                     List<string> BardCantrips = Bard.gettingSpells(0);
                     List<string> BardLevelOne = Bard.gettingSpells(1);
                     List<string> BardLevelTwo = Bard.gettingSpells(2);
+                    CantripList.Items.Clear();
 
 
                     switch (LevelPicker.Value)
