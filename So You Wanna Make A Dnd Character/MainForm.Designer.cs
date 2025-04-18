@@ -719,6 +719,7 @@
             this.randomAllBtn.TabIndex = 80;
             this.randomAllBtn.Text = "Randomize All Fields";
             this.randomAllBtn.UseVisualStyleBackColor = true;
+            this.randomAllBtn.Click += new System.EventHandler(this.randomAllBtn_Click);
             // 
             // STRtbx
             // 

@@ -21,8 +21,6 @@ using System.Data.SQLite;
 using static iText.Signatures.LtvVerification;
 using iText.Layout.Element;
 
-//THIS FILE HAS CONSOLE.WRITELINES THAT NEED TO BE REMOVED BEFORE HANDING IN
-
 
 namespace M_A_G_I_C_K
 {
@@ -192,10 +190,6 @@ namespace M_A_G_I_C_K
 
             //CALCULATING STATS GOES HERE
             calculatingStats();
-
-
-           
-
 
 
         }
@@ -519,8 +513,11 @@ namespace M_A_G_I_C_K
             fields["Background"].SetValue(sepBackground[0]);
             fields["PersonalityTraits "].SetValue(sepBackground[1]);
             fields["Ideals"].SetValue(sepBackground[2]);
-            fields["Bonds"].SetValue(sepBackground[3]);
-            fields["Flaws"].SetValue(sepBackground[4]);
+            fields["Bonds"].SetValue(sepBackground[4]);
+            fields["Flaws"].SetValue(sepBackground[3]);
+
+            Console.WriteLine(sepBackground[4]);
+            Console.WriteLine(sepBackground[3]);
 
 
             //side table for values

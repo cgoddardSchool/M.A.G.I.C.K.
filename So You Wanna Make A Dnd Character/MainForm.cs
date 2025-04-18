@@ -656,6 +656,7 @@ namespace M_A_G_I_C_K
                     List<string> ClericCantrip = Cleric.gettingSpells(0);
                     List<string> ClericLevelOne = Cleric.gettingSpells(1);
                     List<string> ClericLevelTwo = Cleric.gettingSpells(2);
+                    CantripList.Items.Clear();
 
                     switch (LevelPicker.Value)
                     {
@@ -728,6 +729,8 @@ namespace M_A_G_I_C_K
                     List<string> WizCantrip = Wizard.gettingSpells(0);
                     List<string> WizLevelOne = Wizard.gettingSpells(1);
                     List<string> WizLevelTwo = Wizard.gettingSpells(2);
+                    CantripList.Items.Clear();
+
 
                     switch (LevelPicker.Value)
                     {
@@ -805,6 +808,7 @@ namespace M_A_G_I_C_K
                     List<string> BardCantrips = Bard.gettingSpells(0);
                     List<string> BardLevelOne = Bard.gettingSpells(1);
                     List<string> BardLevelTwo = Bard.gettingSpells(2);
+                    CantripList.Items.Clear();
 
 
                     switch (LevelPicker.Value)
@@ -1448,6 +1452,67 @@ namespace M_A_G_I_C_K
             
             return randomTrait;  
 
+        }
+
+        private void randomAllBtn_Click(object sender, EventArgs e)
+        {
+            //put random all info here
+
+            var ran = new Random();
+
+            //getting class, level and race
+            ClassDropBox.SelectedIndex = ran.Next(1, 6);
+            RaceDropBox.SelectedIndex = ran.Next(1, 6);
+            LevelPicker.Value = ran.Next(1, 4);
+
+            //random things that's already an options set up
+            RanNameBtn_Click(sender, e);
+            StatRoll_Click(sender, e);
+
+            //getting the random within the checboxes
+            int totalFeat = FeatCheckBox.Items.Count;
+            int totalWeap = EquipmentCheckBox.Items.Count;
+            int totalArm = ArmCheckbox.Items.Count;
+            int totalInv = InventoryCheckbox.Items.Count;
+            int totalCan = CantripList.Items.Count;
+            int totalSpell = SpellCheckBox.Items.Count;
+
+            //select boxes with only one selection
+            EquipmentCheckBox.SetItemChecked(ran.Next(0, totalWeap), true);
+            ArmCheckbox.SetItemChecked(ran.Next(0, totalArm), true);
+
+            do
+            {
+                FeatCheckBox.SetItemChecked(ran.Next(0, totalFeat), true);
+
+            } while (FeatCheckBox.CheckedItems.Count < 3);
+
+            //starting the random inventory by rolling a amount selected with a min of.. five items
+            int ranInventoryAmount = ran.Next(5, totalInv);
+
+            for (int i = 0; i < ranInventoryAmount; i++)
+            {
+                InventoryCheckbox.SetItemChecked(ran.Next(0, totalInv), true);
+            }
+
+            //if cantrip is greater then zero that means you are a spell caster
+            if (totalCan > 0)
+            {
+
+                do
+                {
+                    CantripList.SetItemChecked(ran.Next(0, totalCan), true);
+
+                } while (CantripList.CheckedItems.Count < 4);
+
+
+                //lastly finishing the spells
+                do
+                {
+                    SpellCheckBox.SetItemChecked(ran.Next(0, totalSpell), true);
+
+                } while (SpellCheckBox.CheckedItems.Count < spellCaster.SpellAmountAllowed);
+            }
         }
     }   
 }
