@@ -1456,6 +1456,13 @@ namespace M_A_G_I_C_K
 
         private void randomAllBtn_Click(object sender, EventArgs e)
         {
+            //unchecking all iteams
+            for (int i = 0; i < InventoryCheckbox.Items.Count; i++)
+            {
+                InventoryCheckbox.SetItemChecked(i, false);
+            }
+
+
             //put random all info here
 
             var ran = new Random();
